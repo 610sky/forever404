@@ -84,7 +84,7 @@
         </div>
       </section>
 
-
+<!-- 로그인 부분 -->
       <div class="modal">
         <div class="modal_body">
           <div class="back_to_menu">
@@ -121,10 +121,11 @@
         	<button type="button" id="login2" onclick="location.href='/movement'">로그인</button>
           </div>
           <div class="kkt_login_btn">
-            <img src="${pageContext.request.contextPath}/image/main/kakao.png"/>
+          <button type="button" id="login3" onclick="location.href='/kakao'"><img src="${pageContext.request.contextPath}/image/main/kakao.png"/></button>
           </div>
         </div>
   </body>
+  <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js" integrity="sha384-TiCUE00h649CAMonG018J2ujOgDKW/kVWlChEuu4jK2vxfAAD0eZxzCKakxg55G4" crossorigin="anonymous"></script>
   <script>
     const header = document.getElementById("header");
     const navLinks = document.querySelectorAll(".nav-link");
