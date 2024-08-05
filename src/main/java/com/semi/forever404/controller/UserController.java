@@ -31,6 +31,11 @@ public class UserController {
 		return "register";
 	}
 	
+	@GetMapping("/album")
+	public String album() {
+		return "album";
+	}
+	
 	@PostMapping("/register")
 	public String register(String id, String password, String phone, String name, String email, @RequestParam(name="birth", required=false) String birth) {
 			System.out.println(birth);
@@ -48,5 +53,4 @@ public class UserController {
 		} catch (ParseException e) {}
 		return "redirect:/";
 	}
-	
 }

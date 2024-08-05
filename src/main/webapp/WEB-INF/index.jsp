@@ -123,6 +123,11 @@
           <div class="kkt_login_btn">
           <button type="button" id="login3" onclick="location.href='/kakao'"><img src="${pageContext.request.contextPath}/image/main/kakao.png"/></button>
           </div>
+          <div>
+          	<ul>
+				<li><a href="/album">앨범으로 가기</a></li>
+			</ul>
+          </div>
         </div>
   </body>
   <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js" integrity="sha384-TiCUE00h649CAMonG018J2ujOgDKW/kVWlChEuu4jK2vxfAAD0eZxzCKakxg55G4" crossorigin="anonymous"></script>
