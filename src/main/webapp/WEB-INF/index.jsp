@@ -1,18 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-
-	 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/reset.css" />
-     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/semi.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/reset.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/semi.css" />
     <script
     src="https://kit.fontawesome.com/ef885bd654.js"
     crossorigin="anonymous"
   ></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   </head>
   <body>
     <header id="header">
@@ -22,9 +23,8 @@
           Forever
         </h1>
         </a >
-        <a href=""><img src="${pageContext.request.contextPath}/image/main/404.png" /></a>
+        <a href="/kakaomap"><img src="${pageContext.request.contextPath}/image/main/404.png" /></a>
       </nav>
-
       <nav id="a2">
         <button
           type="button"
@@ -33,6 +33,7 @@
         >
           개발자
         </button>
+        
         <button type="button" class="nav-link" id="login">로그인</button>
         <button type="button" class="nav-link" onclick="location.href='/register'">
           회원가입
@@ -40,7 +41,7 @@
       </nav>
     </header>
 
-    <div className="main">
+    <div class="main">
       <div id="carousel">
         <button id="prevBtn" class="button2">&#10094;</button>
         <div id="sectioncontainer">
@@ -64,9 +65,14 @@
         <button id="nextBtn" class="button2">&#10095;</button>
       </div>
       <section id="section5">
-        <h1>이 스케줄러의 장점</h1>
-        <p>전체 여행 일정을 한눈에 !</p>
-        <img src="${pageContext.request.contextPath}/image/main/schedule.jpg" alt="" />
+        <div class=schedule>
+          <h1>이 스케줄러의 장점</h1>
+          <p>전체 여행 일정을 한눈에 !</p>
+        </div>
+
+        <div class="schedule">
+          <img src="${pageContext.request.contextPath}/image/main/schedule.jpg" alt="" />
+        </div>
       </section>
       <section id="section6">
         <div id="textBox">
@@ -76,16 +82,15 @@
         </div>
         <div id="positionBox">
           <div class="box" id="box1">
-            <img src="${pageContext.request.contextPath}/image/main/calender2.jpg" />
+            <img src="${pageContext.request.contextPath}/image/main/calender2.jpg" alt="" />
           </div>
           <div class="box" id="box2">
-            <img src="${pageContext.request.contextPath}/image/main/plane.jpg"/>
+            <img src="${pageContext.request.contextPath}/image/main/plane.jpg" alt="" />
           </div>
         </div>
       </section>
-
-<!-- 로그인 부분 -->
-      <div class="modal">
+	
+      <div class="modal" id="modal">
         <div class="modal_body">
           <div class="back_to_menu">
             <a href=""><i class="fa-solid fa-xmark"></i></a>
@@ -94,7 +99,6 @@
             <h1>로그인</h1>
           </div>
           <div class="user_login">
-          <label for="id">
             <i class="fa-regular fa-user"></i>
             <input
               type="text"
@@ -103,22 +107,21 @@
               name="id"
               placeholder="아이디"
               required
-            /></label>
+            />
           </div>
           <div class="user_login">
-          <label for="password">
             <i class="fa-solid fa-lock"></i>
             <input
-              type="text"
+              type="password"
               class="user_password_input"
               id="password"
               name="password"
               placeholder="비밀번호"
               required
-            /></label>
+            />
           </div>
           <div class="login_btn">
-        	<button type="button" id="login2" onclick="location.href='/movement'">로그인</button>
+            <button type="submit" id="login2">로그인</button>
           </div>
           <div class="kkt_login_btn">
           <button type="button" id="login3" onclick="location.href='/kakao'"><img src="${pageContext.request.contextPath}/image/main/kakao.png"/></button>
@@ -127,8 +130,76 @@
           	<ul>
 				<li><a href="/album">앨범으로 가기</a></li>
 			</ul>
+          	 <a href="javascript:kakaoLogin();">
+            <img src="${pageContext.request.contextPath}/image/main/kakao.png" alt="카카오 로그인 버튼" />
+            </a>
+            <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+            <script>
+              Kakao.init('416439531d0e4d8f33eb240c9b791ffb');
+            </script>
+            <script>
+            function kakaoLogin() {
+            	  window.Kakao.Auth.login({
+            	    scope: 'account_email, name, birthyear, phone_number',
+            	    success: function(authObj) {
+            	      const accessToken = authObj.access_token;
+            	      window.Kakao.Auth.setAccessToken(accessToken);
+
+            	      window.Kakao.API.request({
+            	        url: '/v2/user/me',
+            	        success: function(res) {
+            	          const kakao_account = res.kakao_account;
+            	          const formData = {
+            	            email: kakao_account.email,
+            	            name: kakao_account.name,
+            	            birthday: kakao_account.birthday,
+            	            birthyear: kakao_account.birthyear,
+            	            phone: kakao_account.phone_number,
+            	            token: accessToken
+            	          };
+
+            	          // jQuery AJAX 요청
+            	          $.ajax({
+            	            url: '/kakaoLogin',
+            	            method: 'POST',
+            	            data: formData,
+            	            success: function(response) {
+            	              // 요청이 성공했을 때 수행할 작업
+            	            	window.location.href = '/main';
+            	            	location.reload();
+            	            },
+            	            error: function(jqXHR, textStatus, errorThrown) {
+            	              // 요청이 실패했을 때 수행할 작업
+            	              console.error('Login failed: ', textStatus, errorThrown);
+            	            }
+            	          });
+            	        }
+            	      });
+            	    },
+            	    fail: function(error) {
+            	      console.error('Kakao login failed: ', error);
+            	    }
+            	  });
+            	}
+            </script>
           </div>
         </div>
+      </div>
+	<script>
+		$("#login2").click(() => {
+			$.ajax({
+				type : "post",
+				url : "/login",
+				data : {
+					id: $("#id").val(),
+					password: $("#password").val()
+				},
+				success : function() {
+					window.location.href = '/main';
+				}
+			})
+		});
+	</script>
   </body>
   <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js" integrity="sha384-TiCUE00h649CAMonG018J2ujOgDKW/kVWlChEuu4jK2vxfAAD0eZxzCKakxg55G4" crossorigin="anonymous"></script>
   <script>
@@ -156,7 +227,6 @@
     const totalSections = sections.length;
     const sectionContainer = document.getElementById("sectioncontainer");
 
-    
     document
       .getElementById("nextBtn")
       .addEventListener("click", showNextSection);
@@ -220,5 +290,7 @@
         modal.style.display = "none";
       }
     });
+    
+    
   </script>
 </html>

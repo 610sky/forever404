@@ -1,7 +1,5 @@
 package com.semi.forever404.model.vo;
 
-
-
 import java.util.Date;
 
 import lombok.AllArgsConstructor;
@@ -17,15 +15,8 @@ public class User {
 	private String email;
 	private Date birth;
 	
-	
-	
-	public User(String id, String password, String name, String email, String phone) {
-		super();
+	public User(String id) {
 		this.id=id;
-		this.password=password;
-		this.name=name;
-		this.phone=phone;
-		this.email=email;
 	}
 	
 }

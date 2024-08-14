@@ -9,10 +9,18 @@ import mapper.UserMapper;
 
 @Service
 public class UserService {
+	
 	@Autowired
 	private UserMapper mapper;
 	
 	public void register(User user) {
 		mapper.register(user);
+		System.out.println(user);
+	}
+	public User login(User user) {
+		return mapper.login(user);
+	}
+	public User kakaoLogin(String email) {
+		return mapper.kakaoLogin(email);
 	}
 }

@@ -7,9 +7,11 @@ import lombok.NoArgsConstructor;
 @Data @NoArgsConstructor @AllArgsConstructor
 public class ServiceInfo {
 	private int siCode;
+	private String siType;
 	private String serviceName;
-	private String serviceLocation;
-	private String openClosed;
-	private int serviceLike;
-	private String serviceList;
+	private String serviceJibun;
+	private Double seviceLat;
+	private Double serviceLNG;
+	private String servicePhone;
+	private String serviceImg;
 }

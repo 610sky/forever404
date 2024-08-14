@@ -9,11 +9,16 @@ import lombok.NoArgsConstructor;
 @Data @NoArgsConstructor @AllArgsConstructor
 public class BigSchedule {
 	private int bsCode;
-	private int bgGroupCode;
-	private String id;
+	private BigGroup bigGroup;
+	private User user;
 	private Date startDate;
 	private Date endDate;
-	private String bigLocation;
+	private String title;
 	private int entireMoney;
 	private String scheduleColor;
+	
+	public BigSchedule(BigGroup bg, User u) {
+		this.bigGroup=bg;
+		this.user=u;
+	}
 }

@@ -8,7 +8,12 @@ import lombok.NoArgsConstructor;
 public class SmallGroup {
 	private int smGroupCode;
 	private int moneyPerUser;
-	private String id;
-	private int bgGroupCode;
-	private int roleCode;
+	private User user; // 여기서 id를 가져와야함
+	private BigGroup bigGroup; // 여기서 코드를 가져와야함
+	
+	public SmallGroup(User user, BigGroup bigGroup) {
+		this.bigGroup = bigGroup;
+		this.user = user;
+	}
 }
+

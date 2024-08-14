@@ -1,0 +1,78 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.GroupMapper">
+	<insert id="addGroup" parameterType="BigGroup">
+		INSERT INTO big_group(group_name) VALUES(#{groupName})
+	</insert>
+	<!-- biggroup -->
+	<resultMap type="BigGroup" id="bgMap">
+		<id column="bg_group_code" property="bgGroupCode"/>
+		<result column="group_name" property="groupName"/>
+	</resultMap>
+	<select id="userGroup" resultMap="bgMap">
+	SELECT *
+	FROM big_group
+	</select>
+	<!-- small~ -->
+	<resultMap type="SmallGroup" id="groupMap">
+	<id column="sm_group_code" property="smGroupCode"></id>
+	<result column="money_per_user" property="moneyPerUser"/>
+	<result column="role_code" property="roleCode"/>
+	<association property="bigGroup" javaType="BigGroup">
+		<id column="bg_group_code" property="bgGroupCode"/>
+		<result column="group_name" property="groupName"/>
+	</association>
+	<collection property="user" ofType="User">
+	<id column="id" property="id"></id>
+	<result column="password" property="password"></result>
+	<result column="phone" property="phone"></result>
+	<result column="name" property="name"></result>
+	<result column="email" property="email"></result>
+	<result column="birth" property="birth"></result>
+	</collection>
+	</resultMap>
+	<insert id="addSmGroup" parameterType="SmallGroup">
+	INSERT INTO small_group(id, bg_group_code) VALUES(#{user.id}, #{bigGroup.bgGroupCode})
+	</insert>
+	<select id="searchBgCode" resultMap="bgMap" parameterType="String">
+	SELECT bg_group_code
+	FROM big_group
+	WHERE group_name=#{groupName}
+	</select>
+	<select id="allInfoGroup" resultMap="groupMap" parameterType="String">
+	select * 
+	from user
+	left join small_group using(id)
+	left join big_group using(bg_group_code)
+	<where>
+	id=#{id}
+	</where>
+	</select>
+	
+	<!-- BigGroupSchedule -->
+	<resultMap type="BigSchedule" id="BscheduleAddMap">
+		<id column="bs_code" property="bsCode"></id>
+		<result column="start_date" property="startDate"/>
+		<result column="end_date" property="endDate"/>
+		<result column="title" property="title"/>
+		<result column="entire_money" property="entireMoney"/>
+		<result column="schedule_color" property="scheduleColor"/>
+		<association property="bigGroup" javaType="BigGroup">
+		<id column="bg_group_code" property="bgGroupCode"/>
+		<result column="group_name" property="groupName"/>
+	</association>
+	<collection property="user" ofType="User">
+	<id column="id" property="id"></id>
+	<result column="password" property="password"></result>
+	<result column="phone" property="phone"></result>
+	<result column="name" property="name"></result>
+	<result column="email" property="email"></result>
+	<result column="birth" property="birth"></result>
+	</collection>
+	</resultMap>
+
+	<!-- 여기에 select문 필요 (나중에) -->
+
+	<insert id="scheduleAdd" parameterType="BigSchedule">
+		INSERT INTO big_schedule(bg_group_code, id, start_date, end_date, title, entire_money) VALUES (#{bigGroup.bgGroupCode},#{user.id},#{startDate},#{endDate},#{title},#{entireMoney})
+	</insert>
+</mapper>

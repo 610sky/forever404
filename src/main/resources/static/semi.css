@@ -1,0 +1,385 @@
+header {
+  position: fixed;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  height: 80px;
+  align-items: center;
+  transition: background-color 0.5s ease, transform 0.8s ease;
+  z-index: 2;
+}
+
+header h1 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  padding-left: 30px;
+  color: white;
+  z-index: 2;
+  display: flex;
+  align-content: center;
+  padding-top: 25px;
+}
+
+header img {
+  margin-top: 15px;
+  padding-left: 20px;
+  width: 80px;
+  height: 50px;
+}
+
+header nav {
+  height: 100%;
+  display: flex;
+}
+
+nav button {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  color: white;
+  background-color: transparent;
+  font-size: 1.3rem;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+#section1 {
+  min-width: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  background-image: url("/image/register/jeju1.jpg");
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  color: white;
+  font-size: 3rem;
+  font-weight: bold;
+  padding: 10px;
+}
+
+#section1 h1 {
+  margin-bottom: 50px;
+}
+
+#section1 div {
+  display: flex;
+  border-radius: white 2px solid;
+  padding-top: 20px;
+}
+
+#section2 {
+  min-width: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  background-image: url("/image/register/calender3.jpg");
+  background-blend-mode: color;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  color: white;
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+#section2 h1 {
+  padding: 20px;
+  padding-bottom: 50px;
+}
+#section3 {
+  min-width: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  background-image: url("/image/register/lake1.jpg");
+  background-blend-mode: color;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  color: white;
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+#section4 {
+  min-width: 100%;
+  background-color: violet;
+  background-color: rgba(0, 0, 0, 0.6);
+  background-image: url("/image/register/seoul2.jpg");
+  background-blend-mode: color;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  color: white;
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+#carousel {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#sectioncontainer {
+  display: flex;
+  transition: transform 0.5s ease;
+  width: 100%;
+  height: 100%;
+}
+.button2 {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 2.5rem;
+  z-index: 5;
+}
+
+#prevBtn {
+  left: 10px;
+}
+
+#nextBtn {
+  right: 10px;
+}
+
+.nav-link .red {
+  color: darkred;
+}
+.nav-link .white {
+  color: white;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+}
+
+#section5 {
+  height: 1000px;
+}
+
+.schedule {
+  width: 1250px;
+}
+
+#section5 h1 {
+  position: relative;
+  font-size: 3rem;
+  display: flex;
+  justify-content: center;
+  padding: 15px;
+  font-weight: bold;
+  padding-left: 50%;
+}
+
+#section5 p {
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  color: gray;
+  padding: 15px;
+  padding-left: 50%;
+}
+
+#section5 img {
+  width: 1200px;
+  height: 700px;
+  padding-top: 30px;
+  margin-left: 350px;
+}
+
+#section6 {
+  height: 100vh;
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+#textBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+}
+
+#textBox h1 {
+  font-size: 4rem;
+  font-weight: bold;
+  padding: 15px;
+}
+
+#textBox p {
+  font-size: 2rem;
+  color: gray;
+  padding: 15px;
+}
+
+#positionBox {
+  position: relative;
+  width: 50%;
+}
+
+.box {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+
+#box1 img {
+  margin-top: 100px;
+  margin-left: 150px;
+  background-color: white;
+  z-index: 0;
+  width: 90%;
+  height: 80%;
+  object-fit: unset;
+}
+
+#box2 {
+  left: 40%;
+  top: 35%;
+  z-index: 1;
+  color: white;
+}
+
+#box2 img {
+  width: 90%;
+  height: 90%;
+}
+
+#scrollLink {
+  color: white;
+  margin-top: 30px;
+  border: 2px solid white;
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+  cursor: pointer;
+  font-size: 2rem;
+  padding: 10px;
+}
+
+.modal {
+  position: absolute;
+  display: none;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.modal_body {
+  position: absolute;
+  top: 450px;
+  width: 500px;
+  height: 600px;
+  padding: 40px;
+  text-align: center;
+  background-color: white;
+  border-radius: 10px;
+  transform: translateY(-50%);
+}
+
+.modal_body div.back_to_menu {
+  margin-top: -30px;
+  width: 400px;
+}
+.modal_body div.back_to_menu i {
+  font-size: 30px;
+  margin-left: 477px;
+  color: black;
+}
+.modal_body div.mainsbj h1 {
+  font-size: 45px;
+  font-weight: 900;
+  color: skyblue;
+  margin-bottom: 20px;
+}
+.modal_body div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal_body div.user_login {
+  border-bottom: 4px solid black;
+  width: 100%;
+  height: 15%;
+  margin-bottom: 15px;
+}
+div.user_login i {
+  font-size: 30px;
+}
+div.user_login input {
+  margin-left: 20px;
+  width: 300px;
+  height: 50px;
+  font-size: 20px;
+  font-weight: bolder;
+  border: none;
+  outline: none;
+}
+.login_btn input {
+  font-size: 25px;
+  width: 100%;
+  height: 55px;
+  border: none;
+  color: white;
+  background-color: skyblue;
+  border-radius: 10px;
+  margin-top: 40px;
+}
+.modal_body .kkt_login_btn img {
+  margin-top: 25px;
+  width: 100%;
+}
+
+#login2 {
+  font-size: 25px;
+  width: 100%;
+  height: 55px;
+  border: none;
+  color: white;
+  background-color: skyblue;
+  border-radius: 10px;
+  margin-top: 40px;
+  cursor: pointer;
+}
+@media screen and (max-height: 600px) {
+  #section6 img {
+    display: none;
+  }
+}
+@media screen and (max-width: 800px) {
+  #section6 img {
+    display: none;
+  }
+}
