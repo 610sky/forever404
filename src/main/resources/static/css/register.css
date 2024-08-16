@@ -57,7 +57,7 @@
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
 }
-form div input {
+.form div input {
   width: 400px;
   margin-top: 30px;
   font-size: 25px;
@@ -65,13 +65,13 @@ form div input {
   outline: none;
   cursor: pointer;
 }
-form div i {
+.form div i {
   margin-left: 20px;
   margin-right: 20px;
   color: grey;
   font-size: 30px;
 }
-form div.user_kkt_id i {
+.form div.user_kkt_id i {
   margin-left: 10px;
   margin-right: 10px;
   border-radius: 100%;

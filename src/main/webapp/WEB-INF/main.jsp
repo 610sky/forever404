@@ -17,12 +17,29 @@
       <div class="addgroup">
         <button id="addgroup"><i class="fa-solid fa-plus"></i></button>
       </div>
-      <button type="button" onclick="location.href='/logout'">로그아웃</button>
+      
+          <div class="modalgroup">
+        <button id="groupmake" class="addgroup2">
+          <i class="fa-solid fa-plus"></i>
+          <p>그룹 생성</p>
+        </button>
+
+        <button id="grouppart" class="addgroup2">
+          <i class="fa-solid fa-plus"></i>
+          <p>그룹 참가</p>
+        </button>
+      </div>
+      
+      <div class="mymodal">
+       <button type="button" onclick="location.href='/logout'" id="logout">로그아웃</button>
+      </div>
+      
       <div class="group" id="group">
      	 </div>
      	 <div class="user">
         <i class="fa-regular fa-user"></i>
       </div>
+      
 	</header>
 	<div id="calendar-container">
       <div id="calendar"></div>
@@ -35,21 +52,54 @@
 			총 경비 : <input type="text" name="totalMoney"><br/>
 			<input type="submit" value="큰그룹정보" id="add">
 		</form>
-		<div id="modal1" class="modal">
+		
+   <div id="modal1" class="modal">
       <div class="modalcontent">
-        <span class="close">&times</span>
+        <p class="close">&times</p>
         <h2>그룹 추가</h2>
         <hr />
-        <div class="add">
-        	<p><input type="text" id="textBox"></p>
-          <button id="schedule" class="add2">추가</button>
-        </div>
+        <br />
+        <p>
+          새로운 그룹에 이름을 부여해 <br />
+          동료들과 함께해 보세요
+        </p>
+        <section class="mid">
+          <h3>새 그룹 명</h3>
+          <br />
+          <input type="text" />
+          <div class="add">
+            <button id="add" class="add2">만들기</button>
+          </div>
+        </section>
       </div>
+    </div>
+
+    <div id="modal2" class="modal">
+      <div class="modalcontent">
+        <p class="close">&times</p>
+        <h2>그룹 참가</h2>
+        <hr />
+        <br />
+        <p>
+          아래에 전달받은 그룹코드를 입력해<br />
+          그룹에 참여해보세요
+        </p>
+        <section class="mid">
+          <h3>그룹 코드</h3>
+          <br />
+          <input type="text" placeholder="ex) Forever404" id="inputatt" />
+          <div class="add">
+            <button id="attend" class="add2">그룹 참가하기</button>
+          </div>
+        </section>
+      </div>
+    </div>
     </div>
 		<script src="https://kit.fontawesome.com/ef885bd654.js"
       		crossorigin="anonymous">
 		</script>
 		<script>
+		<%--
 			$("#addgroup").click(function () {
 			  $("#modal1").css("display", "block");
 			});
@@ -66,6 +116,7 @@
 			       $(".modal").css("display", "none");
 			     }
 			  });
+			  --%>
     	</script>
     	
 		<script>

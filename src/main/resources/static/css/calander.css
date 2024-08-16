@@ -75,7 +75,7 @@ button i {
   background: url();
 }
 #calendar {
-  position: absolute;
+	position: absolute;
   width: 100vh;
   height: 80vh;
   top: 120px;
@@ -97,8 +97,8 @@ button i {
   margin: 10% auto;
   padding: 20px;
   border: 1px solid #999;
-  width: 25%;
-  height: 500px;
+  width: 400px;
+  height: 350px;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   border-bottom-left-radius: 20px;
@@ -109,7 +109,59 @@ button i {
   justify-content: center;
   font-weight: bold;
   font-size: 2rem;
+  padding-top : 7px;
 }
+
+
+.modal input {
+  width: 100%;
+  height: 45px;
+  font-size: 30px;
+  padding: 15px;
+  border: none;
+  background-color: lightgray;
+  color: white;
+}
+
+.modal hr {
+  margin-top: 5px;
+}
+
+.modal p {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  line-height: 25px;
+  font-size: 1.1rem;
+}
+
+.modal h3 {
+  letter-spacing: -1px;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.modal .mid {
+  margin-top: 40px;
+}
+
+.modal .add2 {
+  margin-top: 40px;
+  margin-left: 255px;
+  width: 95px;
+  height: 38px;
+  background-color: lightgray;
+  border: none;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+}
+
 .close {
   color: #999;
   float: right;
@@ -122,4 +174,106 @@ button i {
   color: black;
   text-decoration: none;
   cursor: pointer;
+}
+
+
+
+#modal2 #attend {
+  width: 110px;
+  margin-left: 245px;
+}
+
+#modal2 #inputatt::placeholder {
+  color: rgba(0, 0, 0, 0.2);
+}
+
+.modalgroup {
+  position: absolute;
+  background-color: lightgrey;
+  width: 280px;
+  height: 100px;
+  margin-top: 110px;
+  margin-left: 200px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  cursor: pointer;
+  display: none;
+}
+
+.addgroup2 {
+  display: flex;
+  background-color: transparent;
+  width: 280px;
+  height: 50px;
+  border: none;
+  cursor: pointer;
+  color: black;
+  outline: none;
+}
+
+.addgroup2:hover {
+  background-color: whitesmoke;
+  color: black;
+  border: 0px solid transparent;
+}
+
+#groupmake:hover {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+#grouppart:hover {
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.addgroup2 i {
+  background-color: white;
+  color: black;
+  width: 30px;
+  height: 30px;
+  margin: 11px;
+  padding-top: 7px;
+  font-size: 1.2rem;
+  background-color: none;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.addgroup2 p {
+  display: flex;
+  font-size: 1.3rem;
+  margin-top: 12px;
+  font-weight: bold;
+}
+
+@media screen and (max-height: 800px) {
+  .user i {
+    display: none;
+  }
+}
+
+.mymodal {
+  position: absolute;
+  background-color: lightgrey;
+  width: 250px;
+  height: 250px;
+  margin-top: 470px;
+  margin-left: 200px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  display: none;
+  z-index: 3;
+}
+
+#logout {
+	position: absolute;
+	bottom: 10px;
+	left: 100px;
 }

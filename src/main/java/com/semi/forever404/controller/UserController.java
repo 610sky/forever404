@@ -55,21 +55,6 @@ public class UserController {
 		}
 		return "redirect:/";}
 		
-	@GetMapping("/")
-	public String index() {
-		return "index";
-	}
-	
-	@GetMapping("/register")
-	public String register() {
-		return "register";
-	}
-	
-	@GetMapping("/album")
-	public String album() {
-		return "album";
-	}
-	
 	// check
 	@PostMapping("/register")
 	public String register(String id, String password, String phone, String name, String email, @RequestParam(name="birth", required=false) String birth) {

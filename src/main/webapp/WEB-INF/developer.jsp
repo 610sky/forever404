@@ -118,9 +118,7 @@
             </ul>
           </section>
         </section>
-        <section id="blank">
-          <h1>　　　　　</h1>
-        </section>
+         <section id="blank"></section>
       </section>
     </div>
     <!-- 로그인 모달 -->

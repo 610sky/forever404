@@ -26,3 +26,76 @@ document.addEventListener("DOMContentLoaded", function () {
 
   calendar.render();
 });
+
+
+$("#groupmake").click(function () {
+  $("#modal1").css("display", "block");
+});
+
+$(".close").click(function () {
+  $(".modal").css("display", "none");
+});
+
+$(window).click(function (event) {
+  if ($(event.target).is(".modal")) {
+    $(".modal").css("display", "none");
+  }
+});
+
+$(document).keydown(function (event) {
+  if (event.keyCode == 27) {
+    $(".modal").css("display", "none");
+  }
+});
+
+$("#addgroup").mouseover((e) => {
+  setTimeout(() => {
+    let content = $(".modalgroup");
+
+    if (content.css("display") === "none") {
+      content.fadeIn(450);
+    }
+  }, 400);
+});
+
+$("#calendar-container").mouseover((e) => {
+  let content = $(".modalgroup");
+
+  if (content.css("display") != "none") {
+    content.fadeOut(200);
+  }
+});
+
+
+$("#grouppart").click(function () {
+  $("#modal2").css("display", "block");
+});
+
+$(".close").click(function () {
+  $(".modal").css("display", "none");
+});
+
+$(window).click(function (event) {
+  if ($(event.target).is(".modal")) {
+    $(".modal").css("display", "none");
+  }
+});
+
+$(document).keydown(function (event) {
+  if (event.keyCode == 27) {
+    $(".modal").css("display", "none");
+  }
+});
+
+
+$(".user").click(function () {
+  $(".mymodal").css("display", "block");
+});
+
+$("#calendar-container").mouseover((e) => {
+  let content = $(".mymodal");
+
+  if (content.css("display") != "none") {
+    content.fadeOut(200);
+  }
+});
