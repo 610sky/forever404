@@ -127,9 +127,6 @@
           <button type="button" id="login3" onclick="location.href='/kakao'"><img src="${pageContext.request.contextPath}/image/main/kakao.png"/></button>
           </div>
           <div>
-          	<ul>
-				<li><a href="/album">앨범으로 가기</a></li>
-			</ul>
           	 <a href="javascript:kakaoLogin();">
             <img src="${pageContext.request.contextPath}/image/main/kakao.png" alt="카카오 로그인 버튼" />
             </a>
