@@ -34,7 +34,7 @@
 	INSERT INTO small_group(id, bg_group_code) VALUES(#{user.id}, #{bigGroup.bgGroupCode})
 	</insert>
 	<select id="searchBgCode" resultMap="bgMap" parameterType="String">
-	SELECT bg_group_code
+	SELECT *
 	FROM big_group
 	WHERE group_name=#{groupName}
 	</select>
@@ -71,8 +71,31 @@
 	</resultMap>
 
 	<!-- 여기에 select문 필요 (나중에) -->
-
+	
+	<select id="searchBsCode" resultMap="BscheduleAddMap" parameterType="int">
+	SELECT * FROM big_schedule
+	LEFT JOIN big_group USING (bg_group_code)
+	WHERE bg_group_code = #{bgGroupCode}
+	</select>
 	<insert id="scheduleAdd" parameterType="BigSchedule">
 		INSERT INTO big_schedule(bg_group_code, id, start_date, end_date, title, entire_money) VALUES (#{bigGroup.bgGroupCode},#{user.id},#{startDate},#{endDate},#{title},#{entireMoney})
+	</insert>
+	
+	
+	<!-- 세부 일정 만들기(small schedule) -->
+	<!--<resultMap type="BigSchedule" id="BscheduleAddMap">
+		<id column="bs_code" property="bsCode"></id>
+		<result column="start_date" property="startDate"/>
+		<result column="end_date" property="endDate"/>
+		<result column="title" property="title"/>
+		
+		<association property="bigGroup" javaType="BigGroup">
+		<id column="bg_group_code" property="bgGroupCode"/>
+		<result column="group_name" property="groupName"/>
+		</association>
+		
+	</resultMap>  -->
+	<insert id="scheduleAdd2" parameterType="SmallSchedule">
+		INSERT INTO small_schedule(memo, items, is_reservation, bs_code) VALUES (#{memo}, #{items}, #{isReservation}, #{bigSchedule.bsCode})
 	</insert>
 </mapper>

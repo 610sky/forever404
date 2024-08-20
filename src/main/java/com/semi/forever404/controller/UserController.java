@@ -24,6 +24,7 @@ public class UserController {
 	@Autowired
 	private UserService service;
 	
+	
 	@ResponseBody
 	@PostMapping("/signUp")
 	public void signUp(String id, String password, String phone, String name, String email, @RequestParam(name="birth", required=false) String birth) throws ParseException {
@@ -124,9 +125,6 @@ public class UserController {
 	    }
 		return "main";
 	}
-	
-	
-	
 	
 	
 	@GetMapping("/kakaomap")

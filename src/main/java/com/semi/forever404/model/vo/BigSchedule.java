@@ -21,4 +21,7 @@ public class BigSchedule {
 		this.bigGroup=bg;
 		this.user=u;
 	}
+	public BigSchedule (String title) {
+		this.title = title;
+	}
 }

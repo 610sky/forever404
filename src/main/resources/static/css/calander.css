@@ -12,7 +12,7 @@ header {
   position: fixed;
 }
 #addgroup {
-  background-color: pink;
+  background-color: lightgray;
   margin-top: 40px;
   width: 60px;
   height: 60px;
@@ -20,6 +20,11 @@ header {
   border: none;
   cursor: pointer;
   margin-left: 7px;
+}
+
+#addgroup:hover {
+  background-color: #2c3e50;
+  color: white;
 }
 .groupButton {
   background-color: transparent;
@@ -75,11 +80,12 @@ button i {
   background: url();
 }
 #calendar {
-	position: absolute;
-  width: 100vh;
+  position: absolute;
+  width: 110vh;
   height: 80vh;
   top: 120px;
   left: 200px;
+  z-index: -1;
 }
 .modal {
   display: none;
@@ -109,9 +115,8 @@ button i {
   justify-content: center;
   font-weight: bold;
   font-size: 2rem;
-  padding-top : 7px;
+  padding-top: 7px;
 }
-
 
 .modal input {
   width: 100%;
@@ -176,8 +181,6 @@ button i {
   cursor: pointer;
 }
 
-
-
 #modal2 #attend {
   width: 110px;
   margin-left: 245px;
@@ -200,6 +203,7 @@ button i {
   border-bottom-right-radius: 20px;
   cursor: pointer;
   display: none;
+  z-index: 10;
 }
 
 .addgroup2 {
@@ -211,6 +215,7 @@ button i {
   cursor: pointer;
   color: black;
   outline: none;
+  z-index: 10;
 }
 
 .addgroup2:hover {
@@ -222,11 +227,13 @@ button i {
 #groupmake:hover {
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
 }
 
 #grouppart:hover {
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.4);
 }
 
 .addgroup2 i {
@@ -260,20 +267,321 @@ button i {
 .mymodal {
   position: absolute;
   background-color: lightgrey;
+  border: #999;
   width: 250px;
   height: 250px;
-  margin-top: 470px;
-  margin-left: 200px;
+  margin-top: 600px;
+  margin-left: 300px;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
   display: none;
   z-index: 3;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
 }
 
 #logout {
-	position: absolute;
-	bottom: 10px;
-	left: 100px;
+  position: absolute;
+  bottom: 10px;
+  left: 100px;
+}
+
+#frm {
+  margin-left: 200px;
+}
+#frm2 {
+  margin-left: 1200px;
+  height: 100vh;
+}
+#modalContent {
+  position: relative;
+  background-color: white;
+  margin-top: 182px;
+  margin-left: 1340px;
+  border: 1px solid #999;
+  width: 500px;
+  height: 700px;
+  border-radius: 10px;
+}
+.head-wrd {
+  font-size: 40px;
+  margin-left: 120px;
+}
+#X {
+  font-size: 40px;
+  color: black;
+  margin-left: 90px;
+  margin-bottom: 60px;
+  cursor: pointer;
+}
+
+#X:hover {
+  color: #999;
+}
+.mdl-header {
+  display: flex;
+  flex-direction: row;
+  width: 498px;
+  height: 100px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom: 1px solid black;
+}
+.section {
+  display: flex;
+  background-color: white;
+  width: 498px;
+  height: 100px;
+  border: none;
+  border-bottom: 1px solid black;
+}
+#one {
+  margin-top: 100px;
+}
+#six {
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-color: black;
+  width: 80px;
+  height: 80px;
+  border-radius: 100px;
+  margin-left: 410px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+#modal2 {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  height: 100vh;
+}
+#modalContent2 {
+  z-index: 2;
+  position: relative;
+  background-color: white;
+  margin-top: 182px;
+  margin-left: 1340px;
+  border: 1px solid #999;
+  width: 500px;
+  height: 700px;
+  border-radius: 10px;
+}
+.head-wrd2 {
+  font-size: 30px;
+  margin-left: 150px;
+}
+#X2 {
+  font-size: 40px;
+  color: black;
+  margin-left: 113px;
+  margin-bottom: 60px;
+  cursor: pointer;
+}
+#X2:hover {
+  color: black;
+}
+.mdl-header2 {
+  display: flex;
+  flex-direction: row;
+  width: 498px;
+  height: 100px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom: 1px solid black;
+}
+.inpt-brder {
+  border: 1px solid black;
+  height: 80px;
+  margin: 20px;
+  border: none;
+  border-bottom: 2px solid black;
+}
+#title {
+  margin-top: 100px;
+}
+.submit {
+  font-size: 40px;
+  width: 498px;
+  height: 98px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border: none;
+  cursor: pointer;
+  border-top: 1px solid black;
+}
+.inpt-brder i {
+  font-size: 30px;
+  margin-top: 35px;
+  margin-left: 10px;
+}
+.tripinfo {
+  font-size: 30px;
+  width: 370px;
+  height: 50px;
+  margin-left: 30px;
+  border: none;
+  outline: none;
+  color: #999;
+}
+
+::placeholder {
+  color: #999;
+}
+
+#bigModal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+}
+#modalContent3 {
+  position: relative;
+  background-color: white;
+  margin-top: 182px;
+  margin-left: 1340px;
+  border: 1px solid #999;
+  width: 500px;
+  height: 700px;
+  border-radius: 10px;
+}
+.head-wrd {
+  font-size: 40px;
+  margin-left: 120px;
+}
+#X {
+  font-size: 40px;
+  color: black;
+  margin-left: 90px;
+  margin-bottom: 60px;
+}
+.mdl-header {
+  display: flex;
+  flex-direction: row;
+  width: 498px;
+  height: 100px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom: 1px solid black;
+}
+.modsection {
+  display: flex;
+  background-color: white;
+  width: 498px;
+  height: 100px;
+  border: none;
+  border-bottom: 1px solid black;
+}
+#one {
+  margin-top: 100px;
+}
+#six {
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-color: black;
+  width: 80px;
+  height: 80px;
+  border-radius: 100px;
+  margin-left: 410px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+#detModal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  height: 100vh;
+}
+#modalContent4 {
+  z-index: 2;
+  position: relative;
+  background-color: white;
+  margin-top: 182px;
+  margin-left: 1340px;
+  border: 1px solid #999;
+  width: 500px;
+  height: 700px;
+  border-radius: 10px;
+}
+.head-wrd2 {
+  font-size: 30px;
+  margin-left: 150px;
+}
+#X2 {
+  font-size: 40px;
+  color: black;
+  margin-left: 113px;
+  margin-bottom: 60px;
+  cursor: pointer;
+}
+
+#X2:hover {
+	color: #999;
+}
+.mdl-header2 {
+  display: flex;
+  flex-direction: row;
+  width: 498px;
+  height: 100px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom: 1px solid black;
+}
+.inpt-brder {
+  border: 1px solid black;
+  height: 80px;
+  margin: 20px;
+  border: none;
+  border-bottom: 2px solid black;
+}
+#title {
+  margin-top: 100px;
+}
+.submit {
+  font-size: 40px;
+  width: 498px;
+  height: 98px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border: none;
+  cursor: pointer;
+  border-top: 1px solid black;
+}
+.inpt-brder i {
+  font-size: 30px;
+  margin-top: 35px;
+  margin-left: 10px;
+}
+.tripinfo {
+  font-size: 30px;
+  width: 370px;
+  height: 50px;
+  margin-left: 30px;
+  border: none;
+  outline: none;
+  color: #999;
+}
+
+::placeholder {
+  color: #999;
+}
+
+#group i:hover {
+  color: #999;
+}
+
+.modal .add2:hover {
+  background-color: black;
+  color: white;
 }

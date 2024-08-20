@@ -1,3 +1,8 @@
+const modal = document.getElementById("myModal");
+const ShowModal = document.getElementById("six");
+const Modal2 = document.getElementById("modal2");
+const exit = document.getElementById("X2");
+
 document.addEventListener("DOMContentLoaded", function () {
   const Calendar = FullCalendar.Calendar;
 
@@ -49,100 +54,29 @@ document.addEventListener("DOMContentLoaded", function () {
   calendar.render();
 
   function showModal() {
-    $("#bigModal").slideDown();
-    if (modal.css("display") === "none") {
-      modal.slideUp(400);
-    }
+    const modal = document.getElementById("myModal");
+    modal.style.display = "block";
   }
-/*
+
   document.getElementById("X").addEventListener("click", function () {
-    document.getElementById("bigModal").style.display = "none";
-  });*/
-    $("#X").click(function () {
-      $("#bigModal").slideUp(400);
-    });
+    document.getElementById("myModal").style.display = "none";
   });
-
-$("#six").click(function () {
-	$("#detModal").slideDown(400);
-  $("#detModal").css("display", "block");
-  $("#bigModal").css("display", "none");
 });
 
-$("#X2").click(function () {
-  $("#detModal").slideUp(400);
-  $("#bigModal").css("display", "block");
+ShowModal.addEventListener("click", () => {
+  Modal2.style.display = "block";
+  modal.style.display = "none";
 });
 
-
-$("#groupmake").click(function () {
-  $("#modal1").css("display", "block");
+exit.addEventListener("click", () => {
+  Modal2.style.display = "none";
+  modal.style.display = "block";
 });
+// function ShowModal() {
+//   const Modal = document.getElementById("myModal2");
+//   Modal.style.display = "block";
+// }
 
-$(".close").click(function () {
-  $(".modal").css("display", "none");
-});
-
-$(window).click(function (event) {
-  if ($(event.target).is(".modal")) {
-    $(".modal").css("display", "none");
-  }
-});
-
-$(document).keydown(function (event) {
-  if (event.keyCode == 27) {
-    $(".modal").css("display", "none");
-  }
-});
-
-$("#addgroup").mouseover((e) => {
-  setTimeout(() => {
-    let content = $(".modalgroup");
-
-    if (content.css("display") === "none") {
-      content.fadeIn(450);
-    }
-  }, 400);
-});
-
-$("#calendar-container").mouseover((e) => {
-  let content = $(".modalgroup");
-
-  if (content.css("display") != "none") {
-    content.fadeOut(200);
-  }
-});
-
-
-$("#grouppart").click(function () {
-  $("#modal2").css("display", "block");
-});
-
-$(".close").click(function () {
-  $(".modal").css("display", "none");
-});
-
-$(window).click(function (event) {
-  if ($(event.target).is(".modal")) {
-    $(".modal").css("display", "none");
-  }
-});
-
-$(document).keydown(function (event) {
-  if (event.keyCode == 27) {
-    $(".modal").css("display", "none");
-  }
-});
-
-
-$(".user").click(function () {
-  $(".mymodal").css("display", "block");
-});
-
-$("#calendar-container").mouseover((e) => {
-  let content = $(".mymodal");
-
-  if (content.css("display") != "none") {
-    content.fadeOut(200);
-  }
-});
+// document.getElementById("X2").addEventListener("click", function () {
+//   document.getElementById("MyModal").style.display = "none";
+// });
