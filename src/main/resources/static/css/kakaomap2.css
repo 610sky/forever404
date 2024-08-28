@@ -10,6 +10,30 @@
 	color: beige;
 }
 
+.search_menu {
+	margin-top : 50px;
+	color:grey;
+	
+}
+
+#bttn {
+	background: #d95050;
+	color: #fff;
+	border: solid 1px grey;
+	padding : 8px;
+	border-radius: 50px;
+}
+
+#bttn:hover {
+	background: #595959;
+	color: #fff;
+}
+
+#btn:hover {
+	background: #595959;
+	color: #fff;
+}
+
 .map_wrap, .map_wrap * {
 	margin:0; 
 	padding:0;
@@ -19,9 +43,15 @@
 	
 .map_wrap {
 	position:relative;
+	margin-top:20px;
 	width:100%;
 	height:350px;
 	}
+	
+#map {
+	border-radius: 10px;
+	border: solid 1px grey;
+}
 	
 #category {
 	position:absolute;
@@ -30,7 +60,8 @@
 	border-radius: 5px; 
 	border:1px solid #909090;
 	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
-	background: #fff;
+	background: #d95050;
+	color: #fff;
 	overflow: hidden;
 	z-index: 2;
 	}
@@ -38,7 +69,7 @@
 #category li {
 	float:left;
 	list-style: none;
-	width:50px;
+	width:60px;
 	border-right:1px solid #acacac;
 	padding:6px 0;
 	text-align: center; 
@@ -46,11 +77,13 @@
 	}
 	
 #category li.on {
-	background: #eee;
+	background: #595959;
+
 	}
 	
 #category li:hover {
-	background: #ffe6e6;
+	background: #595959;
+	color: #fff;
 	border-left:1px solid #acacac;
 	margin-left: -1px;
 	}
@@ -60,16 +93,15 @@
 	border-right:0;
 	}
 	
-#category li span {
-	display: block;
-	margin:0 auto 3px;
-	width:27px;
-	height: 28px;
+#category li .fa-solid {
+	color : #fff;
 	}
 	
-#category li .category_bg {
-	background:url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png) no-repeat;
-		}
+#category li span {
+	display: block;
+	margin:5px auto 3px;
+	}
+	
 		
 #category li .visit {
 	background-position: -10px 0;
@@ -93,10 +125,11 @@
 	
 다섯번째 - #category li .store {background-position: -10px -180px;}*/
 
-
+/*
 #category li.on .category_bg {
 	background-position-x:-46px;
 	}
+*/
 	
 .placeinfo_wrap {
 	display:flex;
@@ -132,7 +165,7 @@
 	border:0; 
 	box-shadow:0px 1px 2px #888;
 	}
-	
+/*
 .placeinfo_wrap .after {
 	content:'';
 	position:relative;
@@ -142,7 +175,7 @@
 	height:12px;
 	background:url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')
 	}
-	
+*/
 .placeinfo a, .placeinfo a:hover, .placeinfo a:active{
 	color:#fff;
 	text-decoration: none;
@@ -171,7 +204,7 @@
 	background: #d95050;
 	background: #d95050 url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png) no-repeat right 14px center;
 	}
-	
+		
 .placeinfo .tel {
 	color:#0f7833;
 	}
@@ -181,6 +214,8 @@
 	font-size:11px;
 	margin-top:0;
 	}
-	
+.testtesttest{
+	margin-left:1000px;
+}	
 
 	

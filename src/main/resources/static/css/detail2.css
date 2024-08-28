@@ -53,7 +53,8 @@ header h1 {
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
   font-family: "Dongle", sans-serif;
   width: 250px;
-  height: 500px;
+  height: 200px;
+  padding: 10px;
 }
 
 #time1 {
@@ -304,4 +305,144 @@ header h1 {
 .add2:hover {
   background-color: #999;
   color: white;
+}
+
+
+#kakaoAdd {
+  background-color: #fee500;
+  border: 2px solid #fee500;
+  height: 40px;
+  margin-left: 15px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  cursor: pointer;
+}
+
+.ps input {
+  margin-left: 10px;
+  width: 210px;
+  height: 40px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border: 1px solid #999;
+  font-size: 1.1rem;
+  padding-left: 10px;
+}
+
+.ps input:focus {
+  border: 3px solid #c2dbfe;
+  outline: none;
+}
+
+#placeP {
+  padding-top: 8px;
+}
+
+.ps select {
+  margin-left: 10px;
+  height: 30px;
+  font-size: 1.3rem;
+}
+
+.ps textarea {
+  margin-left: 10px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.ps textarea:focus {
+  border: 3px solid #c2dbfe;
+  outline: none;
+}
+
+.ps p {
+  padding-top: 3px;
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
+#memoInput {
+  height: 80px;
+  width: 300px;
+  resize: none;
+  padding-top: 7px;
+  padding-left: 10px;
+}
+
+#time {
+  width: 80px;
+  height: 35px;
+  font-size: 1.7rem;
+  padding-left: 5px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+#timeP {
+  padding-top: 5px;
+}
+
+.ps #time:focus {
+  border: 3px solid #c2dbfe;
+  outline: none;
+}
+
+#memoP {
+  padding-top: 30px;
+}
+
+#reserve {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.ps #reserve:focus {
+  border: 3px solid #c2dbfe;
+  outline: none;
+}
+
+#imgPlus {
+  margin-top: 35px;
+  margin-left: 540px;
+  background-color: transparent;
+  border: 2px solid black;
+  cursor: pointer;
+}
+
+#payPlus {
+  margin-left: 180px;
+  margin-top: 40px;
+  width: 45px;
+  cursor: pointer;
+}
+
+
+.groupButton {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 38px;
+    color: #fff;
+    background-color: #999;
+    margin-left: 12px;
+    line-height: 1;
+    border: none;
+    cursor: pointer;
+}
+
+.groupButton:hover {
+	background-color: lightgray;
 }

@@ -10,4 +10,5 @@ public interface UserMapper {
 	void register(User user);
 	User login(User user);
 	User kakaoLogin(String email);
+	User myPage(User user);
 }

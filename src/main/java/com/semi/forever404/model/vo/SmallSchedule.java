@@ -6,18 +6,22 @@ import lombok.NoArgsConstructor;
 
 @Data @NoArgsConstructor @AllArgsConstructor
 public class SmallSchedule {
-	private String groupName;
 	private int ssCode;
 	private String memo;
-	private String items;
 	private char isReservation;
+	private int leftMoney;
+	private String curDate;
+	private String curTime;
 	private BigSchedule bigSchedule;
-
-	public SmallSchedule(String memo, String items, char isReservation, BigSchedule bigSchedule) {
-		this.memo = memo;
-		this.items = items;
-		this.isReservation = isReservation;
+	private String serviceName;
+	private String serviceJibun;
+	private Double serviceLat;
+	private Double serviceLng;
+	private String servicePhone;
+	private String serviceImg;
+	
+	public SmallSchedule(BigSchedule bigSchedule) {
 		this.bigSchedule = bigSchedule;
 	}
-
+	
 }

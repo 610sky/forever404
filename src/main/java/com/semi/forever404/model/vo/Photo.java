@@ -9,8 +9,13 @@ import lombok.NoArgsConstructor;
 @Data @NoArgsConstructor @AllArgsConstructor
 public class Photo {
 	private int photoCode;
-	private Date photoDate;
-	private String location;
-	private String id;
-	private int albumCode;
+	private String photoUrl;
+	private BigSchedule bigSchedule;
+	
+	
+	public Photo(String photoUrl, BigSchedule bigSchedule) {
+		this.photoUrl = photoUrl;
+		this.bigSchedule = bigSchedule;
+	}
+	
 }

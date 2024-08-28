@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -21,7 +22,7 @@
         setTimeout(() => {
           document.getElementById("main").classList.add("fade-out");
           setTimeout(() => {
-            window.location.href = "main.jsp";
+            window.location.href = "/main";
           }, 2000);
         }, 1000);
       });

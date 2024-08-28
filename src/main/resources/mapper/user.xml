@@ -18,4 +18,8 @@
 		SELECT * FROM user
 		WHERE email=#{email}
 	</select>
+	<select id="myPage" parameterType="User" resultType="User">
+		SELECT * FROM user
+		WHERE id=#{id} AND name=#{name}
+	</select>
 </mapper>

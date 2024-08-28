@@ -23,4 +23,7 @@ public class UserService {
 	public User kakaoLogin(String email) {
 		return mapper.kakaoLogin(email);
 	}
+	public User myPage(User user) {
+		return mapper.myPage(user);
+	}
 }

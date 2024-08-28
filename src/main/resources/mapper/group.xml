@@ -1,13 +1,43 @@
+
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.GroupMapper">
 	<insert id="addGroup" parameterType="BigGroup">
 		INSERT INTO big_group(group_name) VALUES(#{groupName})
 	</insert>
+	
+	
 	<!-- biggroup -->
 	<resultMap type="BigGroup" id="bgMap">
 		<id column="bg_group_code" property="bgGroupCode"/>
 		<result column="group_name" property="groupName"/>
 	</resultMap>
+	
+	<!-- 그룹삭제 -->
+	<delete id="deleteGroup1" parameterType="int">
+	DELETE FROM money
+	WHERE ss_code = #{ssCode}
+	</delete>
+	
+	<delete id="deleteGroup2" parameterType="int">
+	DELETE FROM small_schedule
+	WHERE bs_code = #{bsCode}
+	</delete>
+	
+	<delete id="deleteGroup3" parameterType="int">
+	DELETE FROM big_schedule
+	WHERE bg_group_code = #{bgGroupCode}
+	</delete>
+	
+	<delete id="deleteGroup4" parameterType="int">
+	DELETE FROM small_group
+	WHERE bg_group_code = #{bgGroupCode}
+	</delete>
+	
+	<delete id="deleteGroup5" parameterType="int">
+	DELETE FROM big_group
+	WHERE bg_group_code = #{bgGroupCode}
+	</delete>
+	
 	<select id="userGroup" resultMap="bgMap">
 	SELECT *
 	FROM big_group
@@ -71,6 +101,10 @@
 	</resultMap>
 
 	<!-- 여기에 select문 필요 (나중에) -->
+	<select id="selectBg" parameterType="int" resultMap="BscheduleAddMap">
+		SELECT * FROM big_schedule
+		WHERE bg_group_code = #{bigGroup.bgGroupCode}
+	</select>
 	
 	<select id="searchBsCode" resultMap="BscheduleAddMap" parameterType="int">
 	SELECT * FROM big_schedule
@@ -78,24 +112,102 @@
 	WHERE bg_group_code = #{bgGroupCode}
 	</select>
 	<insert id="scheduleAdd" parameterType="BigSchedule">
-		INSERT INTO big_schedule(bg_group_code, id, start_date, end_date, title, entire_money) VALUES (#{bigGroup.bgGroupCode},#{user.id},#{startDate},#{endDate},#{title},#{entireMoney})
+		INSERT INTO big_schedule(bg_group_code, id, start_date, end_date, title, entire_money, schedule_color) VALUES (#{bigGroup.bgGroupCode},#{user.id},#{startDate},#{endDate},#{title},#{entireMoney},#{scheduleColor})
 	</insert>
 	
-	
 	<!-- 세부 일정 만들기(small schedule) -->
-	<!--<resultMap type="BigSchedule" id="BscheduleAddMap">
+	<resultMap type="SmallSchedule" id="scMap">
+		<id column="ss_code" property="ssCode"></id>
+		<result column="memo" property="memo"/>
+		<result column="is_reservation" property="isReservation"/>
+		<result column="left_money" property="leftMoney"/>
+		<result column="cur_date" property="curDate"/>
+		<result column="cur_time" property="curTime"/>
+		<result column="service_name" property="serviceName"/>
+		<result column="service_jibun" property="serviceJibun"/>
+		<result column="service_lat" property="serviceLat"/>
+		<result column="service_lng" property="serviceLng"/>
+		<result column="service_phone" property="servicePhone"/>
+		<result column="service_img" property="serviceImg"/>
+		<association property="bigSchedule" javaType="BigSchedule">
 		<id column="bs_code" property="bsCode"></id>
 		<result column="start_date" property="startDate"/>
 		<result column="end_date" property="endDate"/>
 		<result column="title" property="title"/>
-		
-		<association property="bigGroup" javaType="BigGroup">
-		<id column="bg_group_code" property="bgGroupCode"/>
-		<result column="group_name" property="groupName"/>
+		<result column="entire_money" property="entireMoney"/>
+		<result column="schedule_color" property="scheduleColor"/>
 		</association>
-		
-	</resultMap>  -->
+	</resultMap>
 	<insert id="scheduleAdd2" parameterType="SmallSchedule">
-		INSERT INTO small_schedule(memo, items, is_reservation, bs_code) VALUES (#{memo}, #{items}, #{isReservation}, #{bigSchedule.bsCode})
+		INSERT INTO small_schedule(memo, is_reservation, cur_date, cur_time, bs_code, service_name, service_jibun, service_lat, service_lng, service_phone, service_img)
+		VALUES (#{memo}, #{isReservation}, #{curDate}, #{curTime}, #{bigSchedule.bsCode}, #{serviceName}, #{serviceJibun}, #{serviceLat},#{serviceLng},#{servicePhone},#{serviceImg})
 	</insert>
+	
+	<select id="selectSc" resultMap="scMap" parameterType="BigSchedule">
+		SELELCT * FROM small_schedule
+		WHERE bs_code = #{bigSchedule.bsCode}
+	</select>
+	
+	<select id="selectOneSc" parameterType="int" resultMap="scMap">
+		SELECT * FROM small_schedule
+		LEFT JOIN big_schedule USING (bs_code)
+		WHERE bs_code = #{bsCode}
+	</select>
+	
+	<select id="selectOneBs" parameterType="int" resultMap="BscheduleAddMap">
+		SELECT * FROM big_schedule
+		WHERE bs_code = #{bsCode}
+	</select>
+	
+	<select id="getDateRange" parameterType="int" resultType="map">
+    SELECT startDate AS stdDate, endDate AS endDate
+    FROM Schedule
+    WHERE bsCode = #{bsCode}
+</select>
+	
+	<select id="getDatesList" parameterType="map" resultType="map">
+		WITH RECURSIVE T AS (
+			SELECT #{stdDate} AS date
+			UNION ALL
+			SELECT date + INTERVAL 1 DAY
+			  FROM T WHERE date <![CDATA[ < ]]> #{endDate}
+			)
+			SELECT * FROM T;
+	</select>
+	
+	<!-- 돈 관련 테이블(money) -->
+	<resultMap type="Money" id="moneyMap">
+		<id column="m_code" property="MCode"></id>
+		<result column="use_money" property="useMoney"/>
+		<result column="buying_list" property="buyingList"/>
+		<association property="smallSchedule" javaType="SmallSchedule">
+		<id column="ss_code" property="ssCode"></id>
+		</association>
+	</resultMap>
+	
+	<select id="selectMoney" parameterType="int" resultMap="moneyMap">
+		SELECT * FROM money
+		WHERE ss_code = #{ssCode}
+	</select>
+	
+	<insert id="insertMoney" parameterType="Money">
+		INSERT INTO money(use_money, buying_list, ss_code) VALUES (#{useMoney}, #{buyingList}, #{smallSchedule.ssCode})
+	</insert>
+	
+	<resultMap type="Photo" id="photoMap">
+	<id column="photo_code" property="photoCode"></id>
+	<result column="photo_url" property="photoUrl"/>
+	<association property="bigSchedule" javaType="Bigschedule">
+	<id column="bs_code" property="bsCode"/>
+	</association>
+	</resultMap>
+	<!-- photo 테이블에 이미지 추가 -->
+	<insert id="imgLoad" parameterType="Photo">
+		INSERT INTO photo(photo_url, bs_code) VALUES(#{photoUrl}, #{bigSchedule.bsCode})
+	</insert>
+	
+	<select id="selectMyImg" resultMap="photoMap" parameterType="int">
+	SELECT * FROM photo WHERE bs_code=#{bsCode}
+	</select>
+
 </mapper>

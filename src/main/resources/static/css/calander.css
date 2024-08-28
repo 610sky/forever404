@@ -2,6 +2,15 @@
   padding: 0;
   margin: 0;
 }
+
+#allList {
+	margin-left:200px;
+}
+
+#detailPage {
+	margin-left:300px;
+}
+
 header {
   display: flex;
   align-items: center;
@@ -11,7 +20,7 @@ header {
   height: 100vh;
   position: fixed;
 }
-#addgroup {
+#addgroup3 {
   background-color: lightgray;
   margin-top: 40px;
   width: 60px;
@@ -22,14 +31,14 @@ header {
   margin-left: 7px;
 }
 
-#addgroup:hover {
+#addgroup3:hover {
   background-color: #2c3e50;
   color: white;
 }
 .groupButton {
   background-color: transparent;
   border: none;
-  margin-top: 40px;
+  margin-top: 30px;
   cursor: pointer;
 }
 button i {
@@ -50,11 +59,20 @@ button i {
   font-size: 30px;
 }
 .user i {
-  font-size: 60px;
+font-size: 50px;
   position: absolute;
   bottom: 50px;
   left: 40px;
   cursor: pointer;
+  background-color: white;
+  width: 65px;
+  height: 60px;
+  padding-top: 10px;
+  padding-left: 11px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 .date {
   padding-left: 10px;
@@ -85,6 +103,7 @@ button i {
   height: 80vh;
   top: 120px;
   left: 200px;
+  padding-right: 100px;
   z-index: -1;
 }
 .modal {
@@ -266,9 +285,9 @@ button i {
 
 .mymodal {
   position: absolute;
-  background-color: lightgrey;
+  background-color: white;
   border: #999;
-  width: 250px;
+  width: 300px;
   height: 250px;
   margin-top: 600px;
   margin-left: 300px;
@@ -284,8 +303,41 @@ button i {
 #logout {
   position: absolute;
   bottom: 10px;
-  left: 100px;
+  border: none;
+  width: 100%;
+  height: 30px;
+  font-weight: bold;
+      border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
+
+#logout:hover {
+  background-color: #0b57d0;
+  color: white;
+  border: none;
+    border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+#logout2 {
+  position: absolute;
+  bottom: 10px;
+  border: none;
+  width: 100%;
+  height: 30px;
+  font-weight: bold;
+      border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+#logout2:hover {
+  background-color: #0b57d0;
+  color: white;
+  border: none;
+    border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
 
 #frm {
   margin-left: 200px;
@@ -478,6 +530,7 @@ button i {
   height: 100px;
   border: none;
   border-bottom: 1px solid black;
+  margin-top: 100px;
 }
 #one {
   margin-top: 100px;
@@ -584,4 +637,86 @@ button i {
 .modal .add2:hover {
   background-color: black;
   color: white;
+}
+
+#addMemo {
+	height: 100px;
+	width: 100%;
+}
+
+#addMemo h1 {
+	background-color: yellow;
+	color: skyblue;
+	width:50px;
+	height: 200px;
+}
+
+.fc-day-sun a {
+  color: red;
+}
+
+.fc-day-sat a {
+  color: blue;
+}
+
+
+.groupButton {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 38px;
+    color: #fff;
+    background-color: #999;
+    margin-left: 12px;
+    line-height: 1;
+    border: none;
+    cursor: pointer;
+}
+
+.groupButton:hover {
+	background-color: lightgray;
+}
+
+
+#myHeader {
+  background-color: #fca31d;
+  width: 302px;
+  height: 80px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+#myImg {
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  background-color: #fca31d;
+  font-size: 50px;
+  margin-left: 110px;
+  margin-top: 30px;
+  text-align: center;
+  padding-top: 15px;
+  padding-left: 7px;
+  border: 6px solid black;
+  border-radius: 50%;
+}
+
+#nameSection {
+  width: 100%;
+  height: 80px;
+  background-color: transparent;
+  position: absolute;
+  margin-top: 140px;
+  font-weight: bold;
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+#myId {
+  padding-top: 15px;
+  font-weight: 100;
+  font-size: 1.1rem;
 }

@@ -5,11 +5,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data @NoArgsConstructor @AllArgsConstructor
-public class Service {
-	private int serviceCode;
+public class Money {
+	private int mCode;
 	private int useMoney;
-	private int leftMoney;
 	private String buyingList;
-	private int siCode;
-	private int ssCode;
+	private SmallSchedule smallSchedule;
+	
+	public Money(SmallSchedule smallSchedule) {
+		this.smallSchedule = smallSchedule;
+	}
+	
 }
