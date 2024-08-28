@@ -45,7 +45,6 @@ public class GroupController {
 					return false;
 				}
 			}
-//			System.out.println(list);
 			HttpSession session = request.getSession();
 			User user = (User) session.getAttribute("user");
 			if(!bigGroup.getGroupName().equals("")) {
@@ -53,6 +52,7 @@ public class GroupController {
 				BigGroup bg = service.searchBgCode(groupName);
 				String id =user.getId();
 				int bgGroupCode = bg.getBgGroupCode();
+				System.out.println(bgGroupCode);
 				SmallGroup smGroup = new SmallGroup(new User(id), new BigGroup(bgGroupCode));
 				service.addSmGroup(smGroup);
 				return true;
@@ -234,14 +234,8 @@ public class GroupController {
 	*/
 	@ResponseBody
 	@PostMapping("/scheduleAdd2")
-	public void scheduleAdd2(HttpServletRequest request, SmallSchedule smallSchedule, int bsCode)  {
-//		HttpSession session = request.getSession();
-//		BigSchedule bigSchedule = (BigSchedule)session.getAttribute("selectB");
-//		
-//		System.out.println(bigSchedule);
-		
-		System.out.println(bsCode);
-		
+	public void scheduleAdd2(HttpServletRequest request, SmallSchedule smallSchedule, int bsCode, String curDate)  {
+	
 		String url;
 		try {
 			url = crawling.getImgUrl(smallSchedule.getServiceName());
@@ -251,13 +245,10 @@ public class GroupController {
 		}
 		
 		smallSchedule.setBigSchedule(service.selectOneBs(bsCode));
-		System.out.println(smallSchedule.getBigSchedule());
-		
-		
+			
 //		CurDate 값 수정 필요(front한테 받기)
-		smallSchedule.setCurDate("2024-08-22");
-		
-		System.out.println(smallSchedule);
+		smallSchedule.setCurDate(curDate);
+	
 		service.scheduleAdd2(smallSchedule);
 		
 //		#{memo} o, #{isReservation} o, #{cur_date}x, #{cur_time}x, #{use_money}x, #{left_money}x, #{buying_list}, #{bigSchedule.bsCode}, #{serviceName}, 

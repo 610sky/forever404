@@ -37,12 +37,12 @@ public class ScheduleController {
 			f.transferTo(file);
 			
 			
-			String url = path + fileName;
+			String url = "http://192.168.10.28:8080/storage/" + fileName;
 			BigSchedule bg = new BigSchedule();
 			bg.setBsCode(code);
 			photo = new Photo(url, bg);
 			service.imgLoad(photo);
 		}
-
+		
 	}
 }

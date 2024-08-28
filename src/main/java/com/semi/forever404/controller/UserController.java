@@ -5,6 +5,7 @@ import java.net.http.HttpRequest;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +15,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.semi.forever404.model.vo.SmallGroup;
 import com.semi.forever404.model.vo.User;
+import com.semi.forever404.service.GroupService;
 import com.semi.forever404.service.UserService;
 
 import jakarta.servlet.http.Cookie;
@@ -26,6 +29,8 @@ import jakarta.servlet.http.HttpSession;
 public class UserController {
 	@Autowired
 	private UserService service;
+	@Autowired
+	private GroupService gpService;
 	
 	
 	@ResponseBody
@@ -46,7 +51,15 @@ public class UserController {
 		public boolean login(HttpServletRequest request, User user) {
 			HttpSession session = request.getSession();
 			session.setAttribute("user", service.login(user));
-			if(session.getAttribute("user")!=null) return true;
+			if(session.getAttribute("user")!=null) {
+				
+//				if(list.isEmpty()) {
+//					session.setAttribute("check", false);
+//				} else {
+//					session.setAttribute("check", true);
+//				}
+				return true;
+			}
 			else return false;
 		}
 	

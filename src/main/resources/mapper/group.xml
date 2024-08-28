@@ -1,18 +1,61 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.GroupMapper">
+
+	<!--  big_group & small_group 추가>-->
 	<insert id="addGroup" parameterType="BigGroup">
 		INSERT INTO big_group(group_name) VALUES(#{groupName})
 	</insert>
+	<insert id="addSmGroup" parameterType="SmallGroup">
+		INSERT INTO small_group(id, bg_group_code) VALUES(#{user.id}, #{bigGroup.bgGroupCode})
+	</insert>
 	
 	
-	<!-- biggroup -->
+	<!-- big_group resultMap -->
 	<resultMap type="BigGroup" id="bgMap">
 		<id column="bg_group_code" property="bgGroupCode"/>
 		<result column="group_name" property="groupName"/>
 	</resultMap>
 	
-	<!-- 그룹삭제 -->
+	<!-- small_group & user & big_group 테이블 조인용 result-map -->
+	<resultMap type="SmallGroup" id="groupMap">
+	<id column="sm_group_code" property="smGroupCode"></id>
+	<result column="money_per_user" property="moneyPerUser"/>
+	<result column="role_code" property="roleCode"/>
+	<association property="bigGroup" javaType="BigGroup">
+		<id column="bg_group_code" property="bgGroupCode"/>
+		<result column="group_name" property="groupName"/>
+	</association>
+	<collection property="user" ofType="User">
+	<id column="id" property="id"></id>
+	<result column="password" property="password"></result>
+	<result column="phone" property="phone"></result>
+	<result column="name" property="name"></result>
+	<result column="email" property="email"></result>
+	<result column="birth" property="birth"></result>
+	</collection>
+	</resultMap>
+	
+	<!-- 그룹이름 중복 찾기용 select -->
+	<select id="userGroup" resultMap="bgMap">
+	SELECT *
+	FROM big_group
+	</select>
+	
+	<!-- 그룹을 가지고 있는 회원 찾기용 select -->
+	<select id="selectSmallGroup" resultMap="groupMap" parameterType="String">
+	SELECT * FROM small_group
+	WHERE id = #{id}
+	</select>
+	
+	<!-- 그룹 이름으로 프라이머리키 찾는 select -->
+	<select id="searchBgCode" resultMap="bgMap" parameterType="String">
+	SELECT *
+	FROM big_group
+	WHERE group_name=#{groupName}
+	</select>
+	
+	<!-- money 테이블 삭제 -->
 	<delete id="deleteGroup1" parameterType="int">
 	DELETE FROM money
 	WHERE ss_code = #{ssCode}
@@ -38,36 +81,8 @@
 	WHERE bg_group_code = #{bgGroupCode}
 	</delete>
 	
-	<select id="userGroup" resultMap="bgMap">
-	SELECT *
-	FROM big_group
-	</select>
-	<!-- small~ -->
-	<resultMap type="SmallGroup" id="groupMap">
-	<id column="sm_group_code" property="smGroupCode"></id>
-	<result column="money_per_user" property="moneyPerUser"/>
-	<result column="role_code" property="roleCode"/>
-	<association property="bigGroup" javaType="BigGroup">
-		<id column="bg_group_code" property="bgGroupCode"/>
-		<result column="group_name" property="groupName"/>
-	</association>
-	<collection property="user" ofType="User">
-	<id column="id" property="id"></id>
-	<result column="password" property="password"></result>
-	<result column="phone" property="phone"></result>
-	<result column="name" property="name"></result>
-	<result column="email" property="email"></result>
-	<result column="birth" property="birth"></result>
-	</collection>
-	</resultMap>
-	<insert id="addSmGroup" parameterType="SmallGroup">
-	INSERT INTO small_group(id, bg_group_code) VALUES(#{user.id}, #{bigGroup.bgGroupCode})
-	</insert>
-	<select id="searchBgCode" resultMap="bgMap" parameterType="String">
-	SELECT *
-	FROM big_group
-	WHERE group_name=#{groupName}
-	</select>
+	
+	
 	<select id="allInfoGroup" resultMap="groupMap" parameterType="String">
 	select * 
 	from user

@@ -32,7 +32,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
   <body>
     <header>
       <!-- <div id="group"><a href="/${groupName}">그룹</a></div> -->
-      <div id="group"><button type="text" class="group">그룹</button></div>
+      <div id="group"><button type="text" class="group" onclick="location.href='/${groupName}';">그룹</button></div>
       <section id="date">
         <c:forEach items="${selectSRange}" var="date">
           <div class="date" data-date="${date}"></div>
@@ -70,11 +70,12 @@ uri="http://java.sun.com/jsp/jstl/core"%>
         </section>
       </div>
       <section class="section">
-        <div class="img">image</div>
+      <div class="img">image</div>
         <div>
           <h2>타이틀</h2>
           <p>위치</p>
           <p>영업시간</p>
+       
         </div>
       </section>
       <button id="nextBtn2" class="button2">&#10094;</button>
@@ -96,6 +97,9 @@ uri="http://java.sun.com/jsp/jstl/core"%>
     <script>
       const kakaobtn = document.querySelector("#plus");
       kakaobtn.addEventListener("click", () => {
+    	  $.ajax({
+    		  
+    	  });
         window.location.href = "/kakao/map";
       });
     </script>
@@ -134,26 +138,26 @@ uri="http://java.sun.com/jsp/jstl/core"%>
       </div>
     </div>
 -->
-    <div id="modal2" class="modal">
-      <div class="modalcontent">
-        <span class="close">&times</span>
-        <h2>사진 추가</h2>
-        <hr />
-        <form id="fileForm" method="post" enctype="multipart/form-data">
-          <input
-            type="file"
-            name="files"
-            multiple
-            accept="image/*"
-            onchange="imgShow(event)"
-          />
+	<div id="modal2" class="modal">
+		<div class="modalcontent">
+			<span class="close">&times</span>
+			<h2>사진 추가</h2>
+			<hr />
+			<form id="fileForm" method="post" enctype="multipart/form-data">
+				<div class=fileContainer>
+					<label for="file" class="upload"><div>+</div></label> <input
+						id="file" type="file" name="files" multiple accept="image/*"
+						onchange="imgShow(event)" value="+" placeholder="+" />
+					<div id="image_container"></div>
+				</div>
 
-          <div id="image_container"></div>
-        </form>
-        <div class="add">
-          <button class="add2" id="fileSubmit">추가</button>
-        </div>
-        <script>
+			</form>
+			<section class="addSection">
+				<button class="add2" id="fileSubmit">업로드</button>
+			</section>
+		</div>
+	</div>
+	<script>
           let bsCode = localStorage.getItem("bsCode");
 
           function imgShow(event) {
@@ -164,7 +168,6 @@ uri="http://java.sun.com/jsp/jstl/core"%>
               reader.onload = function (e) {
                 const img = document.createElement("img");
                 img.setAttribute("src", e.target.result);
-                img.style.width = "200px"; // Adjust image size if needed
                 container.appendChild(img);
               };
               reader.readAsDataURL(file);
@@ -213,6 +216,9 @@ uri="http://java.sun.com/jsp/jstl/core"%>
             useMoney: $("#useMoney").val(),
           },
           success: function () {},
+          error: function() {
+        	  alert("다시입력");
+          }
         });
       });
     </script>
@@ -277,31 +283,6 @@ uri="http://java.sun.com/jsp/jstl/core"%>
     </script>
 
     <script>
-         <%--
-         $(document).ready(function () {
-      	   const bsCode = $('#bsCode').text();
-      	   //stdDate, endDate는 main-modal에서 click event 발생할 때 가져와서 세팅한다
-      	   const data = { bsCode: bsCode }
-      	    $.ajax({
-      		   type: "post",
-      		   url: "/{groupName}/detail/selectList",
-      		   data: JSON.stringify(data),
-      		   dataType: 'json',
-      		   contentType: 'application/json; charset=utf-8',
-      		   success : function(result) {
-      			   //시작일 ~ 종료일 배열값을 배열변수 dateList에 넣는다
-      			   dateList = result.list;
-      			   //시작일을 #h1date에 세팅한다
-      			   $("#h1date").text(dateList[0].date);
-      			   //버튼처리를 위한 함수
-      			   bindEvents(dateList);
-      		   },
-      	   });
-         });
-      --%>
-
-
-
          	$(document).ready(function () {
          	  const dateElements = document.querySelectorAll('.date');
          	  const dateList = Array.from(dateElements).map(el => el.getAttribute('data-date'));
@@ -311,11 +292,11 @@ uri="http://java.sun.com/jsp/jstl/core"%>
       	    function updateDate(index) {
       	        if (index >= 0 && index < dateList.length) {
       	            $("#h1date").text(dateList[index]);
+      	    		sessionStorage.setItem("date", $("#h1date").text());
       	        }
       	    }
-
+						
       		$('#nextBtn1').click(() => {
-      			console.log("클릭반응!");
       	        if (currentIndex < dateList.length - 1) {
       	            currentIndex++;
       	            updateDate(currentIndex);
@@ -323,7 +304,6 @@ uri="http://java.sun.com/jsp/jstl/core"%>
       	    });
 
       	    $('#nextBtn2').click(() => {
-      	    	console.log("클릭반응222");
       	        if (currentIndex > 0) {
       	            currentIndex--;
       	            updateDate(currentIndex);
@@ -356,6 +336,9 @@ uri="http://java.sun.com/jsp/jstl/core"%>
           },
         });
       });
+    </script>
+    
+    <script>
     </script>
   </body>
 </html>

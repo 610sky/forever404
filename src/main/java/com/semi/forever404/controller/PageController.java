@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.semi.forever404.model.vo.BigGroup;
 import com.semi.forever404.model.vo.BigSchedule;
 import com.semi.forever404.model.vo.Money;
+import com.semi.forever404.model.vo.SmallGroup;
 import com.semi.forever404.model.vo.SmallSchedule;
 import com.semi.forever404.model.vo.User;
 import com.semi.forever404.service.GroupService;
@@ -31,6 +32,7 @@ import jakarta.servlet.http.HttpSession;
 public class PageController {
 	@Autowired
 	private GroupService service;
+
 	
 	@GetMapping("/")
 	public String index() {
@@ -50,7 +52,20 @@ public class PageController {
 	}
 	
 	@GetMapping("/main")
-	public String main() {
+	public String main(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("user");
+		if(user!=null) {
+		List<SmallGroup> list = service.selectSmallGroup(user.getId());
+		session.setAttribute("smlist", list);
+		System.out.println(list);
+		
+		if(list.isEmpty()) {
+			session.setAttribute("check", false);
+		} else {
+			session.setAttribute("check", true);
+		}
+		}
 		return "main";
 	}
 	
@@ -64,16 +79,22 @@ public class PageController {
 	
 	@GetMapping("/{groupName}")
 	public String select(@PathVariable("groupName") String groupName, BigSchedule bigSchedule, HttpServletRequest request, Model model) {
-		HttpSession session = request.getSession();
-		User user = (User) session.getAttribute("user");
-		BigGroup bg = service.searchBgCode(groupName);
-		bigSchedule.setBigGroup(bg);
-		List<BigSchedule> bsList = service.selectBg(bigSchedule);
-		model.addAttribute("bsList", bsList);
-		session.setAttribute("groupName", groupName);
-		if(user!=null) return "main";
-		else if(user==null) return "redirect:/";
-		else return null;
+		
+		if(!groupName.equals("favicon.ico")) {
+			HttpSession session = request.getSession();
+			User user = (User) session.getAttribute("user");
+			
+			BigGroup bg = service.searchBgCode(groupName);
+			bigSchedule.setBigGroup(bg);
+			List<BigSchedule> bsList = service.selectBg(bigSchedule);
+			model.addAttribute("bsList", bsList);
+			//System.out.println("86 : " + groupName);
+			
+			if(user!=null) return "main";
+			else if(user==null) return "redirect:/";
+			else return null;
+		}
+		return null;
 	}
 	
 	@GetMapping("/{groupName}/detail")

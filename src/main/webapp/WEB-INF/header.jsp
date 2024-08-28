@@ -60,7 +60,70 @@
       <i class="fa-regular fa-user"></i>
        
     </div>-->
+    
+   
 	</header>
+	
+	 <div id="modal1" class="modal">
+			<div class="modalcontent">
+				<p class="close">&times</p>
+				<h2>그룹 추가</h2>
+				<hr />
+				<br />
+				<p>
+					새로운 그룹에 이름을 부여해 <br /> 동료들과 함께해 보세요
+				</p>
+				<section class="mid">
+					<h3>새 그룹 명</h3>
+					<br /> <input type="text" id="textbox" />
+					<div class="add">
+						<button id="addGroup" class="add2">만들기</button>
+						<div id="successText"></div>
+						>
+					</div>
+				</section>
+			</div>
+		</div>
+		<div id="modal2" class="modal">
+			<div class="modalcontent">
+				<p class="close">&times</p>
+				<h2>그룹 참가</h2>
+				<hr />
+				<br />
+				<p>
+					아래에 전달받은 그룹코드를 입력해<br /> 그룹에 참여해보세요
+				</p>
+				<section class="mid">
+					<h3>그룹 코드</h3>
+					<br /> <input type="text" placeholder="ex) Forever404"
+						id="inputatt" />
+					<div class="add">
+						<button id="attend" class="add2">그룹 참가하기</button>
+					</div>
+				</section>
+			</div>
+		</div>
+		<script>
+        $("#attend").click(() => {
+          const title = $("#inputatt").val();
+          $.ajax({
+            type: "post",
+            url: "/attendGroup",
+            data: "groupName=" + title,
+            success: function (check) {
+            	if(check === true){
+            		alert("그룹 참여 성공:)");
+            	} else {
+            		alert("없는 그룹입니다");
+            	}
+            	location.reload();
+            },
+            error: function(){
+            	alert("실패");
+            }
+          });
+        });
+      </script>
 	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 	<script>
 	$("#logout").click(function () {
@@ -68,6 +131,8 @@
           type: "post",
           url: "/logout",
           success : function() {
+        	  alert("로그아웃 처리 되었습니다!");
+        	  localStorage.clear();
         	  window.location.href = "/";
           }
         });
@@ -79,6 +144,8 @@
           type: "post",
           url: "/logout",
           success : function() {
+        	  alert("로그아웃 처리 되었습니다!");
+        	  localStorage.clear();
         	  window.location.href = "/";
           }
         });

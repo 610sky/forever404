@@ -17,6 +17,10 @@ public interface GroupMapper {
 	void addGroup(BigGroup bigGroup);
 	BigGroup searchBgCode(String groupName);
 	List<BigGroup> userGroup();
+	
+	//smallgroup select
+	List<SmallGroup> selectSmallGroup(String id);
+	
 	List<SmallGroup> allInfoGroup(String id);
 	void addSmGroup(SmallGroup smallGroup);
 	void scheduleAdd(BigSchedule bgs);

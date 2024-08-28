@@ -33,6 +33,10 @@ public class GroupService {
 	public List<BigGroup> userGroup() {
 		return mapper.userGroup();
 	}
+	
+	public List<SmallGroup> selectSmallGroup(String id) {
+		return mapper.selectSmallGroup(id);
+	}
 	public List<SmallGroup> allInfoGroup(String id) {
 		return mapper.allInfoGroup(id);
 	}
