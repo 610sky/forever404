@@ -24,7 +24,7 @@ public class Forever404Application {
 			
 		SpringApplication.run(Forever404Application.class, args);
 		
-		
+		/*
 		// 1. WebDriver와 ChromeDriver 설정
 		// 프로젝트 폴더 기준으로 chromedirver.exe 파일의 위치를 작성
 		System.setProperty("webdriver.chrome.driver", "driver/chromedriver.exe");
@@ -62,7 +62,7 @@ public class Forever404Application {
 		WebElement imageElement = popupElement.findElement(By.tagName("img")); // 팝업 내에서 이미지 요소 찾기
         String imageSrc = imageElement.getAttribute("src"); // 이미지의 src 속성 값 가져오기
         System.out.println("Image URL: " + imageSrc);
-
+        */
 	}
 
 }

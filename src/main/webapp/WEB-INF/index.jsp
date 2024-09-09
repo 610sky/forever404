@@ -15,21 +15,19 @@
   ></script>
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> 
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
   </head>
   <body>
-  <c:if test="${not empty user}">
+  	<c:if test="${not empty user}">
   	<script>
   	window.location.href = "/movement";
   	</script>
   </c:if>
- 
   <script>
   Kakao.init('416439531d0e4d8f33eb240c9b791ffb');
   Kakao.Auth.logout();
   </script>
- 
     <header id="header">
       <nav id="a1">
       <a href="">
@@ -37,7 +35,7 @@
           Forever
         </h1>
         </a >
-        <a href="/kakaomap"><img src="${pageContext.request.contextPath}/image/main/404.png" /></a>
+        <a href="/"><img src="${pageContext.request.contextPath}/image/main/404.png" /></a>
       </nav>
       <nav id="a2">
         <button
@@ -47,14 +45,12 @@
         >
           개발자
         </button>
-        
         <button type="button" class="nav-link" id="login">로그인</button>
         <button type="button" class="nav-link" onclick="location.href='/register'">
           회원가입
         </button>
       </nav>
     </header>
-
     <div class="main">
       <div id="carousel">
         <button id="prevBtn" class="button2">&#10094;</button>
@@ -62,7 +58,7 @@
           <section class="section" id="section1">
             <h1>트러블 없는 트래블 스케줄러,(적당한 멘트)</h1>
             <br />
-            <h1>"SEMI PROJECT"<프로젝트제목></h1>
+            <h1>"SEMI PROJECT"　< Trip Scheduler ></h1>
             <h2><a id="scrollLink">자세히 보기</a></h2>
           </section>
           <section class="section" id="section2">
@@ -83,7 +79,6 @@
           <h1>이 스케줄러의 장점</h1>
           <p>전체 여행 일정을 한눈에 !</p>
         </div>
-
         <div class="schedule" data-aos="fade-up" data-aos-delay="300" data-aos-duration="800">
           <img src="${pageContext.request.contextPath}/image/main/schedule.jpg" alt="" />
         </div>
@@ -138,9 +133,6 @@
             <button type="submit" id="login2">로그인</button>
           </div>
           <div class="kkt_login_btn">
-          <button type="button" id="login3" onclick="location.href='/kakao'"><img src="${pageContext.request.contextPath}/image/main/kakao.png"/></button>
-          </div>
-          <div>
           	 <a href="javascript:kakaoLogin();">
             <img src="${pageContext.request.contextPath}/image/main/kakao.png" alt="카카오 로그인 버튼" />
             </a>
@@ -151,7 +143,6 @@
             	    success: function(authObj) {
             	      const accessToken = authObj.access_token;
             	      Kakao.Auth.setAccessToken(accessToken);
-
             	      window.Kakao.API.request({
             	        url: '/v2/user/me',
             	        success: function(res) {
@@ -174,7 +165,7 @@
             	            data: formData,
             	            success: function(response) {
             	              // 요청이 성공했을 때 수행할 작업
-            	              
+            	             
             	            	window.location.href = '/main';
             	              	location.reload();
             	            },
@@ -207,19 +198,19 @@
 				},
 				success : function(response) {
 					if(response == true) {
-						window.location.href = "/movement";
+					  	window.location.href = "/movement";
 						location.reload();
+					}else {
+						alert("아이디 혹은 비밀번호가 잘못되었습니다");
 					}
 				}
 			})
 		});
 	</script>
   </body>
-  <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js" integrity="sha384-TiCUE00h649CAMonG018J2ujOgDKW/kVWlChEuu4jK2vxfAAD0eZxzCKakxg55G4" crossorigin="anonymous"></script>
-  <script>
+  <script>	
     const header = document.getElementById("header");
     const navLinks = document.querySelectorAll(".nav-link");
-
     navLinks.forEach((link) => {
       link.addEventListener("mouseover", () => {
         header.style.backgroundColor = "white";
@@ -227,7 +218,6 @@
           link.style.color = "black";
         });
       });
-
       link.addEventListener("mouseout", () => {
         header.style.backgroundColor = "transparent";
         navLinks.forEach((link) => {
@@ -235,36 +225,29 @@
         });
       });
     });
-
     let currentIndex = 0;
     const sections = document.querySelectorAll(".section");
     const totalSections = sections.length;
     const sectionContainer = document.getElementById("sectioncontainer");
-
     document
       .getElementById("nextBtn")
       .addEventListener("click", showNextSection);
     document
       .getElementById("prevBtn")
       .addEventListener("click", showPrevSection);
-
     function showNextSection() {
       currentIndex = (currentIndex + 1) % totalSections;
       updateCarousel();
     }
-
     function showPrevSection() {
       currentIndex = (currentIndex - 1 + totalSections) % totalSections;
       updateCarousel();
     }
-
     function updateCarousel() {
       const offset = -currentIndex * 100;
       sectionContainer.style.transform = "translateX(" + offset + "%)";
     }
-
     setInterval(showNextSection, 4000);
-
     document
       .getElementById("scrollLink")
       .addEventListener("click", function (event) {
@@ -273,11 +256,9 @@
           .getElementById("section5")
           .scrollIntoView({ behavior: "smooth" });
       });
-
     document.addEventListener("DOMContentLoaded", () => {
       const header = document.querySelector("#header");
       const section5 = document.querySelector("#section5");
-
       const handleScroll = () => {
         const section5Rect = section5.getBoundingClientRect();
         if (section5Rect.top <= 0) {
@@ -286,25 +267,19 @@
           header.style.transform = "translateY(0)";
         }
       };
-
       window.addEventListener("scroll", handleScroll);
-
       handleScroll();
     });
-
     const modal = document.querySelector(".modal");
     const btnOpenModal = document.querySelector("#login");
-
     btnOpenModal.addEventListener("click", () => {
       modal.style.display = "flex";
     });
-
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && modal.style.display === "flex") {
         modal.style.display = "none";
       }
     });
-    
     AOS.init();
   </script>
 </html>
