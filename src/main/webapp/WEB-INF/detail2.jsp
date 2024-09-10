@@ -63,7 +63,7 @@
 										<c:set var="using" value="${using + money.useMoney}" />
 										<input type="hidden" value="${money.mCode}">
 										<hr>
-																				<button class="deleteM">
+											<button class="deleteM">
   											<svg viewBox="0 0 15 17.5" height="17.5" width="15" xmlns="http://www.w3.org/2000/svg" class="icon">
   												<path transform="translate(-2.5 -1.25)" d="M15,18.75H5A1.251,1.251,0,0,1,3.75,17.5V5H2.5V3.75h15V5H16.25V17.5A1.251,1.251,0,0,1,15,18.75ZM5,5V17.5H15V5Zm7.5,10H11.25V7.5H12.5V15ZM8.75,15H7.5V7.5H8.75V15ZM12.5,2.5h-5V1.25h5V2.5Z" id="Fill"></path>
 											</svg>
@@ -93,17 +93,14 @@
 									<div class="item-content">
 										<input type="hidden" value="${item.schedule.ssCode}">
 										<h2>장소 : ${item.schedule.serviceName}
+										<c:if test="${item.schedule.isReservation eq 'Y'}">
 										<div class="tooltip">
- 											 <div class="icon">i</div>
+ 											<div class="icon">i</div>
   											<div class="tooltiptext">
-  											<c:if test="${item.schedule.isReservation eq 'Y'}">
   											예약 완료.
-  											</c:if>
-  											<c:if test="${item.schedule.isReservation eq 'N'}">
-  											예약 안됨.
-  											</c:if>
   											</div>
-										</div>
+  											</div>
+  											</c:if>
 										</h2>
 										<p>위치 : ${item.schedule.serviceJibun}</p>
 										<p>연락처 : ${item.schedule.servicePhone}</p>
@@ -291,13 +288,11 @@
       let ssCode;
       
       $(".payPlus").click(function () {
-    	 console.log("click");
         $("#modal3").css("display", "block");
         ssCode = $(this).siblings('input[type="hidden"]').val();
       });
       
       $("#moneyBtn").click(() => {
-    	  console.log(ssCode);
         $.ajax({
           type: "post",
           url: "/insertMoney",
@@ -311,7 +306,7 @@
         	  location.reload();
           },
           error: function() {
-        	  alert("다시입력");
+        	  alert("다시 입력해주세요");
           }
         });
       });
@@ -319,7 +314,6 @@
       //금액 삭제
       $(".deleteM").click(function () {
     	  var mCode = $(this).siblings('input[type="hidden"]').val();
-    	  console.log(mCode);
     	  $.ajax({
     		  type: "get",
     		  url: "/deleteM",
@@ -335,7 +329,7 @@
       //스케줄 삭제
       $(".deleteSc").click(function () {
     	  ssCode = $(this).siblings('input[type="hidden"]').val();
-    	  console.log(ssCode);
+    	  if(confirm( "삭제하시면 복구할 수 없습니다 \n정말로 삭제하시겠습니까??")) {
     	  $.ajax({
     		  type: "get",
     		  url:"/deleteSc",
@@ -347,6 +341,9 @@
     			  location.reload();
     		  }
     	  });
+    	  }else {
+    		  return false;
+    	  }
       });
       
       

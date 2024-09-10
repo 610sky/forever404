@@ -157,7 +157,6 @@
             	        success: function(res) {
             	          const kakao_account = res.kakao_account;
             	          const  birthday = kakao_account.birthday;
-            	          console.log(birthday);
             	          const formData = {
             	            email: kakao_account.email,
             	            name: kakao_account.name,

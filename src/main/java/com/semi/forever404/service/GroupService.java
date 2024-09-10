@@ -7,7 +7,6 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.semi.forever404.model.dto.CalendarDTO;
 import com.semi.forever404.model.vo.BigGroup;
 import com.semi.forever404.model.vo.BigSchedule;
 import com.semi.forever404.model.vo.Money;
@@ -140,11 +139,7 @@ public class GroupService {
 	        paramMap.put("endDate", endDate);
 	        return mapper.getDatesList(paramMap);
 	}
-	
-	// 특정 날짜에 따른 
-	public List<SmallSchedule> curDateSchedule(SmallSchedule smallSchedule) {
-		return mapper.curDateSchedule(smallSchedule);
-	}
+
 	//팁 가져오기
 	public List<Tip> tip() {
 		return mapper.tip();

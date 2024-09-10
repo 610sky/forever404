@@ -56,7 +56,6 @@ public class ServiceService {
 		
 		WebElement imageElement = popupElement.findElement(By.tagName("img")); // 팝업 내에서 이미지 요소 찾기
         String imageSrc = imageElement.getAttribute("src"); // 이미지의 src 속성 값 가져오기
-        System.out.println("Image URL: " + imageSrc);
         driver.close();
         return imageSrc;
 	}

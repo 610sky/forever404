@@ -174,17 +174,7 @@
             $("#button1").css("marginLeft", "0px");
           });
       });
-      
-      <%--
-      $("#gptOpen").click(function () {
-    	  const moving = $("#gptModal").css("display");
-    	    if (moving === "none") {
-        	  $("#gptModal").css("display", "block")
-    	  } else {
-    		  $("#gptModal").css("display", "none")
-    	  }
-      });--%>
-      
+ 
       $("#gptOpen").click(function () {
     	    const location = $("#gptModal").css("margin-left");
     	    

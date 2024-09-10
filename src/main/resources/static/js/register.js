@@ -85,6 +85,7 @@ $("#submit").click(() => {
         birth: $("#birth").val(),
       },
       success: function () {
+		alert("회원가입 완료!");
         location.href = "/";
       },
       error: function (xhr, status, error) {

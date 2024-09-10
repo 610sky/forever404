@@ -15,16 +15,15 @@ import com.semi.forever404.model.vo.BigSchedule;
 import com.semi.forever404.model.vo.Photo;
 import com.semi.forever404.service.GroupService;
 
-
-
 @Controller
 public class ScheduleController {
 	
 	private String path = "\\\\192.168.10.28\\forever404\\storage\\";
+	
 	@Autowired
 	private GroupService service;
 	
-	
+	// 공용 폴더 + 데이터베이스 사진 추가
 	@ResponseBody
 	@PostMapping("/testupload")
 	public void testupload(List<MultipartFile> files, String bsCode) throws IllegalStateException, IOException {
@@ -36,7 +35,6 @@ public class ScheduleController {
 			String fileName = uuid.toString() + "_" + f.getOriginalFilename();
 			File file = new File(path + fileName);
 			f.transferTo(file);
-			
 			
 			String url = "http://192.168.10.28:8080/storage/" + fileName;
 			BigSchedule bg = new BigSchedule();

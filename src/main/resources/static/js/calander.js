@@ -63,7 +63,6 @@ document.addEventListener("DOMContentLoaded", function () {
 		html: `<div><i class="fa-solid fa-pencil"></i></div>` -> 나중에 생일할때 이용하면 좋을것같음
 	 },*/,
     eventClick: function (info) {
-      console.log(info.event.extendedProps.money);
     },
     eventClick: function showModal() {
       $("#bigModal").css("display", "block");
@@ -174,7 +173,6 @@ document.addEventListener("DOMContentLoaded", function () {
           localDate: date,
         },
         success: function (response) {
-          console.log(response);
         },
       });
 
@@ -328,7 +326,6 @@ $("#seven").click(function () {
     success: function (result) {
       $("#albumModal").css("display", "block");
       $("#bigModal").css("display", "none");
-      console.log(result);
 
       const imgContainer1 = $("#slider");
       const photo = result.map(function (picture) {
@@ -371,9 +368,8 @@ $("#seven").click(function () {
 
 $("#eight").click(() => {
 	
-  console.log("클릭");
   let bsCode = sessionStorage.getItem("bsCode");
-  if(confirm( "삭제하시면 복구할 수 없습니다 \n 정말로 삭제하시겠습니까??")) {
+  if(confirm( "삭제하시면 복구할 수 없습니다 \n정말로 삭제하시겠습니까??")) {
   $.ajax({
     type: "get",
     url: "/deleteBs",
@@ -393,8 +389,7 @@ $("#delete").click(() => {
   const bigImg = document.querySelector("#bigImg");
   var imgSrc = bigImg.getAttribute("src");
   var imgCode = bigImg.getAttribute("alt");
-  console.log(imgSrc);
-  console.log(imgCode);
+  if (confirm("삭제하시면 복구할 수 없습니다 \n정말로 삭제하시겠습니까??")) {
   $.ajax({
     type: "post",
     url: "/deletePhoto",
@@ -404,7 +399,6 @@ $("#delete").click(() => {
     },
     success: function () {
       alert("성공적으로 삭제되었습니다");
-      //console.log($('.smallImg img[alt="' + imgCode + '"]'));
       $('img[alt="' + imgCode + '"]').remove();
     },
     error: function () {
@@ -412,6 +406,9 @@ $("#delete").click(() => {
       location.reload();
     },
   });
+  }else {
+	return false;
+  }
 });
 
 function setupSlider() {

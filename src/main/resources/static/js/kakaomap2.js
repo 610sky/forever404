@@ -69,7 +69,7 @@ function currentLocation() {
       });
     });
   } else {
-    alert("현위치를 확인할 수 없음");
+    alert("현위치를 확인할 수 없습니다");
   }
 }
 
@@ -153,7 +153,6 @@ function searchLocalPlaces() {
   // 커스텀 오버레이의 컨텐츠 노드에 mousedown, touchstart 이벤트가 발생했을때
   // 지도 객체에 이벤트가 전달되지 않도록 이벤트 핸들러로 kakao.maps.event.preventMap 메소드를 등록합니다
   addEventHandle(contentNode, "mousedown", kakao.maps.event.preventMap);
-  console.log("mousedown");
   //addEventHandle(contentNode, "touchstart", kakao.maps.event.preventMap);
 
   // 커스텀 오버레이 컨텐츠를 설정합니다
@@ -166,7 +165,6 @@ function searchLocalPlaces() {
   function addEventHandle(target, type, callback) {
     if (target.addEventListener) {
       target.addEventListener(type, callback);
-      console.log("o");
     } else {
       target.attachEvent("on" + type, callback);
     }
@@ -263,7 +261,6 @@ function searchLocalPlaces() {
 
   // 클릭한 마커에 대한 장소 상세정보를 커스텀 오버레이로 표시하는 함수입니다
   function displayPlaceInfo(place) {
-    console.log(place);
 
     var content =
       '<div class="placeinfo">' +

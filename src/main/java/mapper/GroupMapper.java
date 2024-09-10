@@ -58,10 +58,7 @@ public interface GroupMapper {
 	List<Photo> selectMyImg (int num); //선택
 	List<Map<String, Object>> getDatesList (Map<String, Object> paramMap);
 	Map<String, Object> getDateRange(int bsCode);
-	
-	// 날짜에 따른 세부일정 출력
-	List<SmallSchedule> curDateSchedule(SmallSchedule smallSchedule);
-	
+
 	// 팁 가져오기
 	List<Tip> tip();
 	

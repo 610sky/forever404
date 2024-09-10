@@ -22,7 +22,22 @@
   text-align: center;
   height: 100%;
   bottom: 140px;
+   position: fixed;
 }
+
+#pId1 {
+	width: 60%;
+    height: 80px;
+    margin-left: 20%;
+    margin-top: 280px;
+	font-size: 80px;
+	display: flex;
+    text-align: center;
+    font-size: 80px;
+    justify-content: center;
+    position: fixed;
+}
+
 header {
   display: flex;
   align-items: center;
@@ -31,6 +46,7 @@ header {
   width: 140px;
   height: 100vh;
   position: fixed;
+  z-index: 5;
 }
 #header2 {
   display: flex;
@@ -339,7 +355,7 @@ button i {
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
   display: none;
-  z-index: 4;
+  z-index: 14;
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
 }
 
@@ -408,6 +424,7 @@ button i {
   left: 455px;
   font-size: 40px;
   color: black;
+  z-index:5;
 }
 #X:hover {
   color: #999;
@@ -457,6 +474,7 @@ button i {
   margin-left: 113px;
   margin-bottom: 60px;
   cursor: pointer;
+  z-index:5;
 }
 #title {
   margin-top: 100px;
@@ -530,8 +548,8 @@ button i {
   margin-left: 24px;
 }
 #seven:hover {
-  color: black;
-  background-color: orange;
+  color: white;
+  background-color: #194569;
   transition-duration: 0.2s;
 }
 #eight {
@@ -629,7 +647,7 @@ button i {
 }
 .submit:hover {
   color: white;
-  background-color: #296fbb;
+  background-color: #194569;
   transition-duration: 0.2s;
 }
 .inpt-brder i {
@@ -710,8 +728,8 @@ button i {
 }
 #addMemoh1:hover {
   color: white;
-  background-color: #296fbb;
-  border-color: #296fbb;
+  background-color: #194569;
+  border-color: #194569;
   transition-duration: 0.4s;
 }
 #addMemop {
@@ -744,6 +762,7 @@ button i {
   height: 80px;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
+  z-index:2;
 }
 
 #myImg {
@@ -758,6 +777,7 @@ button i {
   padding-top: 18.5px;
   border: 6px solid black;
   border-radius: 50%;
+  z-index:5;
 }
 
 #nameSection {
@@ -778,7 +798,7 @@ button i {
 }
 #albumModal {
   position: fixed;
-  z-index: 3;
+  z-index: 15;
   width: 100%;
   height: 100vh;
   left: 0;

@@ -15,7 +15,6 @@ public class UserService {
 	
 	public void register(User user) {
 		mapper.register(user);
-		System.out.println(user);
 	}
 	public User login(User user) {
 		return mapper.login(user);

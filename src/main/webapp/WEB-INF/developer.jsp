@@ -88,11 +88,11 @@
             <img src="${pageContext.request.contextPath}/image/developer/고양이3.jpg"  alt="" />
             <h2>김진주</h2>
             <ul>
-              <li>한일1 : (사용한언어)</li>
-              <li>한일2 : (구축한 코드)</li>
-              <li>한일3 : (구축한 코드)</li>
-              <li>한일4 : (구축한 코드)</li>
-              <li>한일5 : (구축한 코드)</li>
+              <li>사용 언어 및 기술 : Java, Java Script, jQuery, MySql</li>
+              <li>한일1 : 카카오맵 API 활용</li>
+              <li>한일2 : 그룹 관련 데이터베이스 추가, 삭제, 읽기 기능 구현</li>
+              <li>한일3 : 스케줄 관련 데이터베이스 추가, 삭제, 읽기 기능 구현</li>
+              <li>한일4 : css 애니메이션 기능 구현</li>
             </ul>
           </section>
         </section>

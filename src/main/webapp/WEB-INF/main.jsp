@@ -51,7 +51,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
                   let groupName = localStorage.getItem("groupName");
                   if (
                     confirm(
-                      "삭제하시면 복구할 수 없습니다 \n 정말로 삭제하시겠습니까??"
+                      "삭제하시면 복구할 수 없습니다 \n정말로 삭제하시겠습니까??"
                     )
                   ) {
                     $.ajax({
@@ -202,10 +202,8 @@ uri="http://java.sun.com/jsp/jstl/core"%>
           </div>
         </div>
       </div>
-      <script
-        src="https://kit.fontawesome.com/ef885bd654.js"
-        crossorigin="anonymous"
-      ></script>
+      <script src="https://kit.fontawesome.com/ef885bd654.js"
+        crossorigin="anonymous"></script>
       <script>
         $("#final").click(() => {
           $.ajax({
@@ -218,13 +216,13 @@ uri="http://java.sun.com/jsp/jstl/core"%>
               entireMoney: $("#entireMoney").val(),
             },
             success: function (result) {
-              alert("추가됐음!");
+              alert("일정 추가 완료!");
               const id = $("#title2").val();
               $("#addMemo").html("<button>" + id + "</button>");
               location.reload();
             },
             error: function () {
-              alert("다시해라");
+              alert("추가에 실패했습니다.");
               location.reload();
             },
           });
@@ -284,8 +282,6 @@ uri="http://java.sun.com/jsp/jstl/core"%>
         bigSchedules.push(schedule); 
         schedule = {};
       </c:forEach>;
-
-      console.log(bigSchedules);
     </script>
     <script src="${pageContext.request.contextPath}/js/calander.js"></script>
   </body>

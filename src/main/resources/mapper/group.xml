@@ -264,11 +264,6 @@
 		WHERE bs_code = #{bsCode}
 	</delete>
 	
-	<select id="curDateSchedule" resultMap="scMap" parameterType="SmallSchedule">
-	SELECT * FROM small_schedule
-	WHERE cur_date=#{curDate} AND bs_code=#{bigSchedule.bsCode}
-	order by cur_time
-	</select>
 	<!-- 로딩 텍스트 가져오기 -->
 	<select id="tip" resultType="Tip">
 	SELECT * FROM tip

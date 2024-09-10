@@ -3,15 +3,11 @@ package com.semi.forever404.controller;
 import java.io.File;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
-import org.openqa.selenium.html5.SessionStorage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +22,6 @@ import com.semi.forever404.model.dto.CalendarDTO;
 import com.semi.forever404.model.dto.MoneyDTO;
 import com.semi.forever404.model.vo.BigGroup;
 import com.semi.forever404.model.vo.BigSchedule;
-import com.semi.forever404.model.vo.Money;
 import com.semi.forever404.model.vo.Photo;
 import com.semi.forever404.model.vo.SmallGroup;
 import com.semi.forever404.model.vo.SmallSchedule;
@@ -42,7 +37,7 @@ public class PageController {
 	@Autowired
 	private GroupService service;
 
-	
+	// index 페이지 이동 및 user 세션 존재 시, movement-main으로 이동하게끔.
 	@GetMapping("/")
 	public String index(HttpServletRequest request) {
 		HttpSession session = request.getSession();
@@ -50,28 +45,33 @@ public class PageController {
 		if(user!=null) return "movement";
 		else return "index";
 	}
+	
+	//회원가입 창 이동
 	@GetMapping("/register")
 	public String register() {
 		return "register";
 	}
+	
+	//개발자 정보 페이지
 	@GetMapping("/developer")
 	public String developer() {
 		return "developer";
 	}
+	
+	// main으로 이동 전 애니메이션 페이지
 	@GetMapping("/movement")
 	public String movement() {
 		return "movement";
 	}
 	
+	// 켈린더 페이지
 	@GetMapping("/main")
 	public String main(HttpServletRequest request) {
-		
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
 		if(user!=null) {
 		List<SmallGroup> list = service.selectSmallGroup(user.getId());
-		// 한 그룹의 여러 회원
-//		
+		// 한 그룹의 여러 회원	
 		session.setAttribute("smlist", list);
 		
 		if(list.isEmpty()) {
@@ -82,7 +82,7 @@ public class PageController {
 		}
 		return "main";
 	}
-	// 세부 일정 생성 시 로딩창에 나오는 문구 db에서 가져오기
+	// 세부 일정 생성 페이지 이동 및 로딩창에 나오는 문구 db에서 가져오기
 	@GetMapping("/kakao/map")
 	public String kakaomap(HttpServletRequest request) {
 		HttpSession session = request.getSession();
@@ -108,11 +108,9 @@ public class PageController {
 			bigSchedule.setBigGroup(bg);
 			List<BigSchedule> bsList = service.selectBg(bigSchedule);
 			model.addAttribute("bsList", bsList);
-			//System.out.println("86 : " + groupName);
 			
 			if(user!=null) return "main";
-			else if(user==null) return "redirect:/";
-			else return null;
+			else return "redirect:/";
 		}
 		return null;
 	}
@@ -191,9 +189,7 @@ public class PageController {
 	@ResponseBody
 	@PostMapping("/deletePhoto")
 	public void deletePhoto(String photoUrl, int photoCode) {
-		//System.out.println("URL : " + photoUrl);
 		String url = photoUrl.replace("http://192.168.10.28:8080/storage/","\\\\192.168.10.28\\forever404\\storage\\");
-		System.out.println("storage : " + url);
 		if(photoUrl!=null) {
 			File file = new File (url);
 			file.delete();
@@ -207,8 +203,6 @@ public class PageController {
 	@ResponseBody
 	@GetMapping("/deleteSc")
 	public void deleteSc(int ssCode) {
-		//System.out.println(ssCode);
-		
 		service.deleteGroup1(ssCode);
 		service.deleteSc(ssCode);
 	}

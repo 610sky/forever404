@@ -3,14 +3,10 @@ package com.semi.forever404.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
-import java.net.URLEncoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Random;
 
 import org.openqa.selenium.NoSuchElementException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -131,7 +127,6 @@ public class GroupController {
 	@ResponseBody
 	@PostMapping("/scheduleAdd")
 	public boolean schduleAdd(HttpServletRequest request, BigSchedule bigSchedule, Model model) throws ParseException, UnsupportedEncodingException {
-		System.out.println(request.getHeader("referer"));
 		String name = URLDecoder.decode(request.getHeader("referer"), "UTF-8");
 		String groupName = name.substring(22); // url 링크에서 그룹명 잘라내어 디코딩 이후 사용
 		BigGroup bg = service.searchBgCode(groupName);
@@ -152,7 +147,7 @@ public class GroupController {
 		bigSchedule.setScheduleColor(color);
 		
 		
-		// 중복 제거 로직
+		// 날짜에 따른 중복 제거 로직
 		String addStartDate = bigSchedule.getStartDate();
 		String addEndDate = bigSchedule.getEndDate();
 		
