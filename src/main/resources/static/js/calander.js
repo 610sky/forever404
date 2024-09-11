@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
         },
       },
     },
-    events: bigSchedules.map((event) => {
+    events: bigSchedules.map((event) => { 
       let endDate = new Date(event.end);
       endDate.setDate(endDate.getDate() + 1);
       return {
@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
     eventClick: function showModal() {
       $("#bigModal").css("display", "block");
     },
-    eventClick: function (info) {
+    eventClick: function (info) { // 캘린터 날짜 클릭시 모달 나오게 하기
       const modal = $("#bigModal");
       const btn = $("#six");
       const btn2 = $("#seven");
@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function () {
       $("#addMemop2").text(`${endDate.toLocaleDateString()}`);
       $("#addMemop3").text(info.event.extendedProps.money);
       modal.css("display", "block");
-      if ("#addMemoh1" != null) {
+      if ("#addMemoh1" != null) { // 모달창의 제목이 비어있을시 모달내의 배치도, 디자인 다르게 하기
         btn2.css("display", "block");
         btn3.css("display", "block");
         btn.css("display", "none");
@@ -197,7 +197,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   calendar.render();
-  function showModal() {
+  function showModal() { // 캘린더의 날짜를 눌렀을때 기본적으로 모달에 나오는 값들
     $("#bigModal").css("display", "block");
 	$("#addTitle").show();
     $("#addMemoh1").hide();
@@ -316,7 +316,7 @@ $("#addgroup3").mouseout((e) => {
     }, 3000);
   }
 });
-$("#seven").click(function () {
+$("#seven").click(function () { // 사진 버튼 누를시 작동하는 값들 
   let bsCode = sessionStorage.getItem("bsCode");
   // 이미지 리스트로 뿌림 result에서 추출 잘하세요
   $.ajax({
@@ -411,7 +411,7 @@ $("#delete").click(() => {
   }
 });
 
-function setupSlider() {
+function setupSlider() { // 사진 모달 내에 사진 슬라이드 만드는 스크립트
   const leftButton = document.querySelector("#slideBtn1");
   const rightButton = document.querySelector("#slideBtn2");
   const slideInside = document.querySelector("#slider");
@@ -443,7 +443,7 @@ function setupSlider() {
     showPhoto(currentIndex + 5);
   });
 }
-$("#close").click(function () {
+$("#close").click(function () { 
   $("#albumModal").css("display", "none");
   $("#bigModal").css("display", "block");
   $("#picScroll").find("img").remove();
