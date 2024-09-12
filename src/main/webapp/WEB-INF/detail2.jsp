@@ -174,12 +174,9 @@
 	</div>
 
 	<script>
-	
+	//kakaomap 이동
       const kakaobtn = document.querySelector("#button3");
       kakaobtn.addEventListener("click", () => {
-    	  $.ajax({
-    		  
-    	  });
         window.location.href = "/kakao/map";
       });
    
@@ -218,7 +215,7 @@
             });
           }
           
-
+			// 사진 업로드
           $("#fileSubmit").click(() => {
             const files = new FormData($("#fileForm")[0]);
             files.append("bsCode", bsCode);
@@ -236,7 +233,8 @@
               },
             });
           });
-       
+     
+	 // 일정추가&사진추가 버튼
       $(".btn").click((e) => {
         let content = $(".btn1");
 
@@ -254,16 +252,7 @@
         }
       });
 
-      /*
-      $("#button3").click(function () {
-        $("#modal1").css("display", "block");
-      });
-		*/
-      /*
-		  $(".btn").click(function () {
-		        $("#modal1").css("display", "block");
-		      });
-*/
+     // 사진 업로드 모달 창 닫기
       $(".close").click(function () {
         $(".modal").css("display", "none");
         $("#image_container img").remove();
@@ -280,18 +269,21 @@
           $(".modal").css("display", "none");
         }
       });
-
+	
+      // 사진 추가 버튼
       $("#button4").click(function () {
         $("#modal2").css("display", "block");
       });
 
       let ssCode;
       
+      // 금액 모달 창
       $(".payPlus").click(function () {
         $("#modal3").css("display", "block");
         ssCode = $(this).siblings('input[type="hidden"]').val();
       });
       
+      // 금액 추가 
       $("#moneyBtn").click(() => {
         $.ajax({
           type: "post",
@@ -311,7 +303,7 @@
         });
       });
       
-      //금액 삭제
+      // 금액 삭제
       $(".deleteM").click(function () {
     	  var mCode = $(this).siblings('input[type="hidden"]').val();
     	  $.ajax({
@@ -346,11 +338,7 @@
     	  }
       });
       
-      
-      // $("#schedule").click(function () {
-      // $(".section").show().css("display", "block");
-      // });
-   
+      //
       $(document).ready(function () {
         let groupName = localStorage.getItem("groupName");
         $.ajax({
@@ -369,9 +357,9 @@
         });
       });
       
+      //
       function dateLoad(date){
     	  var cur_date = date;
-    	  
     	  $.ajax({
               type: "post",
               url: "/mola",
@@ -381,7 +369,6 @@
               success: function (response) {
                 let miniTitle = response.groupName.substring(0, 2);
                 $(".group").text(miniTitle);
-                
               },
               error: function (xhr, status, error) {
                 console.error("Error:", error);

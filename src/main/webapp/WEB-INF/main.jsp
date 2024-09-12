@@ -5,20 +5,13 @@
   <head>
     <meta charset="UTF-8" />
     <title>ForeverCalendar</title>
-    <link
-      rel="stylesheet"
-      href="${pageContext.request.contextPath}/css/reset.css"
-    />
-    <link
-      rel="stylesheet"
-      href="${pageContext.request.contextPath}css/calander.css"
-    />
-    <link
-      rel="stylesheet"
-      href="${pageContext.request.contextPath}css/tetris.css"
-    />
-    <link
-	href="https://fonts.googleapis.com/css2?family=Dongle:wght@700&family=Nanum+Gothic:wght@400;700&display=swap"
+    <link rel="stylesheet"
+      href="${pageContext.request.contextPath}/css/reset.css"/>
+    <link rel="stylesheet"
+      href="${pageContext.request.contextPath}css/calander.css"/>
+    <link rel="stylesheet"
+      href="${pageContext.request.contextPath}css/tetris.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@700&family=Nanum+Gothic:wght@400;700&display=swap"
 	rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="${pageContext.request.contextPath}js/index.global.min.js"></script>
@@ -32,6 +25,7 @@
         localStorage.clear();
       }
     </script>
+    
     <c:if test="${not empty user}">
       <jsp:include page="header.jsp" />
 
@@ -45,40 +39,41 @@
               </button>
               <button id="teamDelBtn">그룹 삭제</button>
 
-              <script>
-                $("#teamDelBtn").click(() => {
-                  let groupName = localStorage.getItem("groupName");
-                  if (
-                    confirm(
-                      "삭제하시면 복구할 수 없습니다 \n정말로 삭제하시겠습니까??"
-                    )
-                  ) {
-                    $.ajax({
-                      url: "/deleteGroup",
-                      type: "post",
-                      data: "groupName=" + groupName,
-                      success: function () {
-                        window.location.href = "/main";
-                      },
-                    });
-                  } else {
-                    return false;
-                  }
-                });
-              </script>
-            </div>
-            <div id="calendar"></div>
-          </div>
-        </c:if>
-        <c:if test="${empty groupName}">
-        <div id="pId1">
-        <p>그룹을 선택하세요</p>
-        </div>
-        <div class="selectOrAdd">
-          <canvas></canvas>
-          </div>
-        </c:if>
+  <script>
+  	// 그룹 삭제
+    $("#teamDelBtn").click(() => {
+      let groupName = localStorage.getItem("groupName");
+      if (
+        confirm(
+          "삭제하시면 복구할 수 없습니다 \n정말로 삭제하시겠습니까??"
+        )
+      ) {
+        $.ajax({
+          url: "/deleteGroup",
+          type: "post",
+          data: "groupName=" + groupName,
+          success: function () {
+            window.location.href = "/main";
+          },
+        });
+      } else {
+        return false;
+      }
+    });
+  </script>
+           </div>
+           <div id="calendar"></div>
+         </div>
+       </c:if>
+       <c:if test="${empty groupName}">
+       	<div id="pId1">
+       		<p>그룹을 선택하세요</p>
+       	</div>
+       <div class="selectOrAdd">
+         <canvas></canvas>
+       </div>
       </c:if>
+     </c:if>
 
       <c:if test="${check==false}">
         <p id="pId1">그룹을 생성하세요</p>
@@ -105,7 +100,7 @@
             <button id="addMemoh1"></button>
           </header>
           <i class="fa-solid fa-xmark" id="X"></i>
-          <!-- <div id="addMemo"><h1>안녕하세요</h1></div> -->
+
           <div class="modsection" id="addMemo">
             <div id="memoSection">
             </div>
@@ -201,9 +196,13 @@
           </div>
         </div>
       </div>
+      
       <script src="https://kit.fontawesome.com/ef885bd654.js"
         crossorigin="anonymous"></script>
+        
       <script>
+      
+       // 전체적인 일정 추가
         $("#final").click(() => {
           $.ajax({
             type: "post",
@@ -228,46 +227,15 @@
         });
       </script>
 
-      <script>
-        $(".add2").click(() => {
-          const title = $("#textbox").val().trim();
-          const miniTitle = title.substring(0, 2);
-          $.ajax({
-            type: "post",
-            url: "/addGroup",
-            data: { groupName: title },
-            success: function (response) {
-              if (response) {
-                $(".group").append(
-                  "<button type='button' data-code='" +
-                    title +
-                    "' class='groupButton' id='" +
-                    miniTitle +
-                    "'>" +
-                    miniTitle +
-                    "</button><span>" +
-                    title +
-                    "</span>"
-                );
-                // 사용할 앱의 JavaScript 키를 설정해 주세요.
-                //$('.modal').css("display", "none");
-                window.location.reload();
-              } else {
-                $("#successText").text("사용할 수 없는 그룹명입니다.");
-              }
-            },
-          });
-        });
-      </script>
-      
     </c:if>
-    <!-- 로그아웃 cif -->
+    <!-- 로그아웃 -->
     <c:if test="${empty user}">
       <script>
         alert("로그아웃 처리 되었습니다!");
         window.location.href = "/";
       </script>
     </c:if>
+    
     <script>
       const bigSchedules = [];
       let schedule = {};
@@ -282,6 +250,7 @@
         schedule = {};
       </c:forEach>;
     </script>
+    
     <script src="${pageContext.request.contextPath}/js/calander.js"></script>
   </body>
 </html>

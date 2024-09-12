@@ -13,7 +13,8 @@ document.addEventListener("DOMContentLoaded", function () {
     editable: true,
     events: bigSchedules,
     eventTextColor: "black",
-    customButtons: {
+    /* 중복!!
+	customButtons: {
       groupUsers: {
         text: "그룹인원",
         click: function () {
@@ -40,18 +41,11 @@ document.addEventListener("DOMContentLoaded", function () {
           } else {
             return false;
           }
-          /*$.ajax({
-            url: "/deleteGroup",
-            type: "post",
-            data: "groupName=" + groupName,
-            success: function () {
-              window.location.href = "/main";
-            },
-          });*/
         },
       },
     },
-    events: bigSchedules.map((event) => { 
+	*/
+    events: bigSchedules.map((event) => {
       let endDate = new Date(event.end);
       endDate.setDate(endDate.getDate() + 1);
       return {
@@ -67,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
     eventClick: function showModal() {
       $("#bigModal").css("display", "block");
     },
-    eventClick: function (info) { // 캘린터 날짜 클릭시 모달 나오게 하기
+    eventClick: function (info) {
       const modal = $("#bigModal");
       const btn = $("#six");
       const btn2 = $("#seven");
@@ -83,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function () {
       $("#addMemop2").text(`${endDate.toLocaleDateString()}`);
       $("#addMemop3").text(info.event.extendedProps.money);
       modal.css("display", "block");
-      if ("#addMemoh1" != null) { // 모달창의 제목이 비어있을시 모달내의 배치도, 디자인 다르게 하기
+      if ("#addMemoh1" != null) {
         btn2.css("display", "block");
         btn3.css("display", "block");
         btn.css("display", "none");
@@ -197,7 +191,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   calendar.render();
-  function showModal() { // 캘린더의 날짜를 눌렀을때 기본적으로 모달에 나오는 값들
+  function showModal() {
     $("#bigModal").css("display", "block");
 	$("#addTitle").show();
     $("#addMemoh1").hide();
@@ -316,7 +310,7 @@ $("#addgroup3").mouseout((e) => {
     }, 3000);
   }
 });
-$("#seven").click(function () { // 사진 버튼 누를시 작동하는 값들 
+$("#seven").click(function () {
   let bsCode = sessionStorage.getItem("bsCode");
   // 이미지 리스트로 뿌림 result에서 추출 잘하세요
   $.ajax({
@@ -411,7 +405,7 @@ $("#delete").click(() => {
   }
 });
 
-function setupSlider() { // 사진 모달 내에 사진 슬라이드 만드는 스크립트
+function setupSlider() {
   const leftButton = document.querySelector("#slideBtn1");
   const rightButton = document.querySelector("#slideBtn2");
   const slideInside = document.querySelector("#slider");
@@ -443,7 +437,7 @@ function setupSlider() { // 사진 모달 내에 사진 슬라이드 만드는 �
     showPhoto(currentIndex + 5);
   });
 }
-$("#close").click(function () { 
+$("#close").click(function () {
   $("#albumModal").css("display", "none");
   $("#bigModal").css("display", "block");
   $("#picScroll").find("img").remove();

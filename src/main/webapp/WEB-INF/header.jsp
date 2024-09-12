@@ -109,28 +109,62 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
       </div>
     </div>
     <script>
-      $("#attend").click(() => {
-        const title = $("#inputatt").val();
-        $.ajax({
-          type: "post",
-          url: "/attendGroup",
-          data: "groupName=" + title,
-          success: function (check) {
-            if (check === true) {
-              alert("그룹 참여 성공");
-            } else {
-              alert("그룹 참여 실패");
-            }
-            location.reload();
-          },
-          error: function () {
-            alert("그룹 참여 실패");
-          },
-        });
+    
+  	// 그룹 생성
+    $(".add2").click(() => {
+      const title = $("#textbox").val().trim();
+      const miniTitle = title.substring(0, 2);
+      $.ajax({
+        type: "post",
+        url: "/addGroup",
+        data: { groupName: title },
+        success: function (response) {
+          if (response) {
+            $(".group").append(
+              "<button type='button' data-code='" +
+                title +
+                "' class='groupButton' id='" +
+                miniTitle +
+                "'>" +
+                miniTitle +
+                "</button><span>" +
+                title +
+                "</span>"
+            );
+            window.location.reload();
+          } else {
+            $("#successText").text("사용할 수 없는 그룹명입니다.");
+          }
+        },
       });
+    });
+	
+  	// 그룹 참가
+    $("#attend").click(() => {
+      const title = $("#inputatt").val();
+      $.ajax({
+        type: "post",
+        url: "/attendGroup",
+        data: "groupName=" + title,
+        success: function (check) {
+          if (check === true) {
+            alert("그룹 참여 성공");
+          } else {
+            alert("그룹 참여 실패");
+          }
+          location.reload();
+        },
+        error: function () {
+          alert("그룹 참여 실패");
+        },
+      });
+    });
     </script>
+    
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    
     <script>
+    
       $("#logout").click(function () {
         $.ajax({
           type: "post",
