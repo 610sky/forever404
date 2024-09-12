@@ -33,6 +33,7 @@
 	</script>
 <c:set var="using" value="0" />
 	<div class="carousel-container">
+				<!-- 날짜 섹션 -->
 		<c:forEach items="${totalList}" var="total">
 			<div class="carousel-item">
 				<header>
@@ -42,7 +43,7 @@
 				</header>
 
 				<main>
-				
+				<!-- 시간 섹션 -->
 					<c:forEach items="${total.list}" var="item" varStatus="status">
 						<div class="main-content">
 							<div id="time1" class="time">
@@ -56,7 +57,7 @@
 								</c:choose>
 							</div>
 							<div class="detail-content">
-								<!-- 여기까지가 머니 섹션 -->
+								<!-- 머니 섹션 -->
 								<div id="pay">
 									<p id="entireMoney">예산 : ${item.schedule.bigSchedule.entireMoney}원</p>
 
@@ -71,16 +72,11 @@
 										</button>
 										<p>지불금액 : ${money.useMoney}</p>
 										<p>지불품목 : ${money.buyingList}</p>
-
 									</c:forEach>
-									
 									<hr>
 									<c:set var="remainingAmount"
 										value="${item.schedule.bigSchedule.entireMoney - using}" />
 									<p>남은 예산 : ${remainingAmount}원</p>
-									
-									
-
 								</div>
 								<section>
 									<c:choose>
