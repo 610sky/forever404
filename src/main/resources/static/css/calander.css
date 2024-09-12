@@ -22,20 +22,20 @@
   text-align: center;
   height: 100%;
   bottom: 140px;
-   position: fixed;
+  position: fixed;
 }
 
 #pId1 {
-	width: 60%;
-    height: 80px;
-    margin-left: 20%;
-    margin-top: 280px;
-	font-size: 80px;
-	display: flex;
-    text-align: center;
-    font-size: 80px;
-    justify-content: center;
-    position: fixed;
+  width: 60%;
+  height: 80px;
+  margin-left: 20%;
+  margin-top: 280px;
+  font-size: 80px;
+  display: flex;
+  text-align: center;
+  font-size: 80px;
+  justify-content: center;
+  position: fixed;
 }
 
 header {
@@ -424,7 +424,7 @@ button i {
   left: 455px;
   font-size: 40px;
   color: black;
-  z-index:5;
+  z-index: 5;
 }
 #X:hover {
   color: #999;
@@ -474,7 +474,7 @@ button i {
   margin-left: 113px;
   margin-bottom: 60px;
   cursor: pointer;
-  z-index:5;
+  z-index: 5;
 }
 #title {
   margin-top: 100px;
@@ -762,7 +762,7 @@ button i {
   height: 80px;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
-  z-index:2;
+  z-index: 2;
 }
 
 #myImg {
@@ -777,7 +777,7 @@ button i {
   padding-top: 18.5px;
   border: 6px solid black;
   border-radius: 50%;
-  z-index:5;
+  z-index: 5;
 }
 
 #nameSection {

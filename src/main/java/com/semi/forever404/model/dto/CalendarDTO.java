@@ -12,4 +12,3 @@ public class CalendarDTO {
 	List<MoneyDTO> list;
 }
 
-// model에 담을 때 List<CalendarDTO> <--- 이렇게 보내줘!

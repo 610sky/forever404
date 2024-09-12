@@ -19,8 +19,9 @@ uri="http://java.sun.com/jsp/jstl/core"%>
       href="${pageContext.request.contextPath}css/tetris.css"
     />
     <link
-	href="https://fonts.googleapis.com/css2?family=Dongle:wght@700&family=Nanum+Gothic:wght@400;700&display=swap"
-	rel="stylesheet" />
+      href="https://fonts.googleapis.com/css2?family=Dongle:wght@700&family=Nanum+Gothic:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="${pageContext.request.contextPath}js/index.global.min.js"></script>
     <script src="${pageContext.request.contextPath}js/tetris.js"></script>
@@ -33,6 +34,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
         localStorage.clear();
       }
     </script>
+
     <c:if test="${not empty user}">
       <jsp:include page="header.jsp" />
 
@@ -47,6 +49,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
               <button id="teamDelBtn">그룹 삭제</button>
 
               <script>
+                // 그룹 삭제
                 $("#teamDelBtn").click(() => {
                   let groupName = localStorage.getItem("groupName");
                   if (
@@ -59,6 +62,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
                       type: "post",
                       data: "groupName=" + groupName,
                       success: function () {
+                    	alert("삭제 완료했습니다!");
                         window.location.href = "/main";
                       },
                     });
@@ -72,18 +76,20 @@ uri="http://java.sun.com/jsp/jstl/core"%>
           </div>
         </c:if>
         <c:if test="${empty groupName}">
-        <div id="pId1">
-        <p>그룹을 선택하세요</p>
-        </div>
-        <div class="selectOrAdd">
-          <canvas></canvas>
+          <div id="pId1">
+            <p>그룹을 선택하세요</p>
+          </div>
+          <div class="selectOrAdd">
+            <canvas></canvas>
           </div>
         </c:if>
       </c:if>
 
       <c:if test="${check==false}">
-        <p class="selectOrAdd">그룹을 생성하세요</p>
-        <canvas></canvas>
+        <p id="pId1">그룹을 생성하세요</p>
+        <div class="selectOrAdd">
+          <canvas></canvas>
+        </div>
       </c:if>
       <div id="teamModal" style="display: none">
         <div id="modalContent7">
@@ -106,10 +112,9 @@ uri="http://java.sun.com/jsp/jstl/core"%>
             <button id="addMemoh1"></button>
           </header>
           <i class="fa-solid fa-xmark" id="X"></i>
-          <!-- <div id="addMemo"><h1>안녕하세요</h1></div> -->
+
           <div class="modsection" id="addMemo">
-            <div id="memoSection">
-            </div>
+            <div id="memoSection"></div>
             <div id="memoSection1">
               여행 시작 :
               <p id="addMemop"></p>
@@ -124,21 +129,25 @@ uri="http://java.sun.com/jsp/jstl/core"%>
               원
             </div>
             <div id="memoSection4">
-              <p id="addMemop4">
-               아직 일정이 없어요, 일정을 넣어주세요!
-              </p>
+              <p id="addMemop4">아직 일정이 없어요, 일정을 넣어주세요!</p>
             </div>
           </div>
-          <button class="modsection" id="seven"><i class="fa-solid fa-images"></i></button>
-          <button class="modsection" id="six"><i class="fa-solid fa-paper-plane"></i></button>
-          <button class="modsection" id="eight"><i class="fa-solid fa-trash-can"></i></button>
+          <button class="modsection" id="seven">
+            <i class="fa-solid fa-images"></i>
+          </button>
+          <button class="modsection" id="six">
+            <i class="fa-solid fa-paper-plane"></i>
+          </button>
+          <button class="modsection" id="eight">
+            <i class="fa-solid fa-trash-can"></i>
+          </button>
         </div>
       </div>
 
       <div id="detModal" style="display: none">
         <div id="modalContent4">
           <header class="mdl-header2">
-            <p class="head-wrd2">세부 일정 추가</p>
+            <p class="head-wrd2">전체 일정 추가</p>
           </header>
           <i class="fa-solid fa-xmark" id="X2"></i>
           <div class="inpt-brder" id="title">
@@ -181,7 +190,11 @@ uri="http://java.sun.com/jsp/jstl/core"%>
               id="entireMoney"
             />
           </div>
-          <div><button class="submit" id="final"><i id="finalBtn" class="fa-regular fa-calendar-plus"></i></button></div>
+          <div>
+            <button class="submit" id="final">
+              <i id="finalBtn" class="fa-regular fa-calendar-plus"></i>
+            </button>
+          </div>
         </div>
       </div>
       <div id="albumModal" style="display: none">
@@ -202,9 +215,14 @@ uri="http://java.sun.com/jsp/jstl/core"%>
           </div>
         </div>
       </div>
-      <script src="https://kit.fontawesome.com/ef885bd654.js"
-        crossorigin="anonymous"></script>
+
+      <script
+        src="https://kit.fontawesome.com/ef885bd654.js"
+        crossorigin="anonymous"
+      ></script>
+
       <script>
+        // 전체적인 일정 추가
         $("#final").click(() => {
           $.ajax({
             type: "post",
@@ -216,10 +234,15 @@ uri="http://java.sun.com/jsp/jstl/core"%>
               entireMoney: $("#entireMoney").val(),
             },
             success: function (result) {
-              alert("일정 추가 완료!");
-              const id = $("#title2").val();
-              $("#addMemo").html("<button>" + id + "</button>");
-              location.reload();
+              if (result == true) {
+                alert("일정 추가 완료!");
+                const id = $("#title2").val();
+                $("#addMemo").html("<button>" + id + "</button>");
+                location.reload();
+              } else {
+                alert("중복된 일정이 존재합니다.");
+                location.reload();
+              }
             },
             error: function () {
               alert("추가에 실패했습니다.");
@@ -228,47 +251,15 @@ uri="http://java.sun.com/jsp/jstl/core"%>
           });
         });
       </script>
-
-      <script>
-        $(".add2").click(() => {
-          const title = $("#textbox").val().trim();
-          const miniTitle = title.substring(0, 2);
-          $.ajax({
-            type: "post",
-            url: "/addGroup",
-            data: { groupName: title },
-            success: function (response) {
-              if (response) {
-                $(".group").append(
-                  "<button type='button' data-code='" +
-                    title +
-                    "' class='groupButton' id='" +
-                    miniTitle +
-                    "'>" +
-                    miniTitle +
-                    "</button><span>" +
-                    title +
-                    "</span>"
-                );
-                // 사용할 앱의 JavaScript 키를 설정해 주세요.
-                //$('.modal').css("display", "none");
-                window.location.reload();
-              } else {
-                $("#successText").text("사용할 수 없는 그룹명입니다.");
-              }
-            },
-          });
-        });
-      </script>
-      
     </c:if>
-    <!-- 로그아웃 cif -->
+    <!-- 로그아웃 -->
     <c:if test="${empty user}">
       <script>
         alert("로그아웃 처리 되었습니다!");
         window.location.href = "/";
       </script>
     </c:if>
+
     <script>
       const bigSchedules = [];
       let schedule = {};
@@ -281,8 +272,9 @@ uri="http://java.sun.com/jsp/jstl/core"%>
         schedule.bsCode = "${item.bsCode}"; 
         bigSchedules.push(schedule); 
         schedule = {};
-      </c:forEach>;
+      </c:forEach>
     </script>
+
     <script src="${pageContext.request.contextPath}/js/calander.js"></script>
   </body>
 </html>

@@ -84,12 +84,10 @@ public class UserController {
 		User existingUser = service.kakaoLogin(email);
 		if(existingUser !=null) {
 			 session.setAttribute("user", existingUser);
-			 System.out.println("기존 정보가 존재할경우만 뜨는 문구");
 			 return "main";
 		}else {
 			 user = new User(email, token, newphone, name, email, date);
 			 service.register(user);
-			 System.out.println("기존 정보가 존재하지 않을 경우 뜨는 문구");
 			 session.setAttribute("user", user);
 			 return "main";
 		}

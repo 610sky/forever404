@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>ForeverCalendar - Map</title>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <link rel="stylesheet"
       href="${pageContext.request.contextPath}/css/reset.css" />
@@ -61,12 +61,14 @@
       <div class="serviceInfo">
       <hr>
       <div id="testI">
-        <i class="fa-solid fa-location-dot" id="testI1"><span class="testIP">장소</span></a></i><input id="serviceName"  class="service" placeholder="KH정보교육원"></input><br />
-        <i class="fa-solid fa-turn-up" id="testI2"><span class="testIP">위치</span></i><input id="serviceJibun" class="service" placeholder="서울시 강남구 테헤란로 14"></input><br />
-        <i class="fa-solid fa-phone" id="testI3"><span class="testIP">연락처</span></i><input id="servicePhone" class="service" placeholder="1544-9970"></input><br /><hr>
-        </div>
-                <p class="headerP">
-          시간
+        <i class="fa-solid fa-location-dot" id="testI1"><span class="testIP">장소</span></i>
+        	<input id="serviceName"  class="service" placeholder="KH정보교육원"></input><br />
+        <i class="fa-solid fa-turn-up" id="testI2"><span class="testIP">위치</span></i>
+        	<input id="serviceJibun" class="service" placeholder="서울시 강남구 테헤란로 14"></input><br />
+        <i class="fa-solid fa-phone" id="testI3"><span class="testIP">연락처</span></i>
+        	<input id="servicePhone" class="service" placeholder="1544-9970"></input><br /><hr>
+      </div>
+      <p class="headerP">시간
           <select id="time">
             <option value="0">0시</option>
             <option value="1">1시</option>
@@ -92,18 +94,15 @@
             <option value="21">21시</option>
             <option value="22">22시</option>
             <option value="23">23시</option>
-          </select>
-        <p class="headerP" id="reserveP">
-          예약
-          <label>
-          <input type="radio" name="radioButton" id="isReservation" class="reservation" value="Y"/>Y</label>
-           <label>
-          <input type="radio" name="radioButton" id="isReservation" class="reservation" value="N" checked/>N</label>
+          </select></p>
+        <p class="headerP" id="reserveP"> 예약
+          <label><input type="radio" name="radioButton" id="isReservation" class="reservation" value="Y"/>Y</label>
+          <label><input type="radio" name="radioButton" id="isReservation" class="reservation" value="N" checked/>N</label>
         </p>
 		
-         <p id="memoP" class="headerP">메모</p>
+        <p id="memoP" class="headerP">메모</p>
           <textarea id="memo" class="memo" rows="1"></textarea><hr>
-                  <input type="submit" value="일정 추가하기" id="ssTest" />
+            <input type="submit" value="일정 추가하기" id="ssTest" />
 		<button id="gptOpen">선택이 어려우신가요?</button>
 
       </div>
@@ -121,22 +120,18 @@
 	 <ul id="category">
         <li id="AT4"> 
         	<i class="fa-solid fa-landmark"></i>
-           <!-- <span class="category_bg visit"></span> -->
             <span>관광명소</span>
         </li>       
         <li id="FD6"> 
         	<i class="fa-solid fa-utensils"></i>
-           <!-- <span class="category_bg food"></span> -->
             <span>음식점</span>
         </li>  
         <li id="CE7"> 
        		<i class="fa-solid fa-mug-saucer"></i>
-           <!-- <span class="category_bg cafe"></span> -->
             <span>카페</span>
         </li>  
         <li id="AD5"> 
         	<i class="fa-solid fa-house"></i>
-           <!-- <span class="category_bg hotel"></span> -->
             <span>숙박</span>
         </li>      
     </ul>
@@ -147,6 +142,8 @@
 <script src="${pageContext.request.contextPath}/js/kakaomap2.js"></script>
 
     <script>
+    
+      // 검색창 숨기기
       $("#button1").click(function () {
         $("#category").animate({ marginLeft: "-300px" }, 800);
         $("header").animate({ marginLeft: "-300px" }, 800);
@@ -160,7 +157,8 @@
             $("#button2").css("marginLeft", "0px");
           });
       });
-
+	
+      // 검색창 꺼내기
       $("#button2").click(function () {
         $("#category").animate({ marginLeft: "0px" }, 800);
         $("header").animate({ marginLeft: "0px" }, 800);
@@ -175,6 +173,7 @@
           });
       });
  
+      // gpt창
       $("#gptOpen").click(function () {
     	    const location = $("#gptModal").css("margin-left");
     	    
@@ -219,7 +218,7 @@
   		}
       }
       
-      
+      // gpt 답장 시 적용 시키는 텍스트 딜레이
       $("#gpt").click(() =>{
     	  const userMessage = gptTest.value;
     	  conversationHistory.push({ "role": "user", "content": userMessage});
@@ -249,7 +248,7 @@
 	                 console.error('Error:', error);
 	              });
 	      });
-            
+      // 특정 그룹의 메인 페이지로 가기 위한 함수      
       $("#back").click(() => {
     	  const groupName = localStorage.getItem("groupName");
     	  const bsCode = localStorage.getItem("bsCode");

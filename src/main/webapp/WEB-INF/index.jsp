@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>ForeverCalendar</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/reset.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/semi.css" />
     <script
@@ -16,20 +16,15 @@
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> 
-  <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
   </head>
   <body>
    
   	<c:if test="${not empty user}">
   	<script>
+  	//이미 로그인 되어있으면 main가게끔
   	window.location.href = "/movement";
   	</script>
   </c:if>
- 
-  <script>
-  Kakao.init('416439531d0e4d8f33eb240c9b791ffb');
-  Kakao.Auth.logout();
-  </script>
  
     <header id="header">
       <nav id="a1">
@@ -144,7 +139,13 @@
           	 <a href="javascript:kakaoLogin();">
             <img src="${pageContext.request.contextPath}/image/main/kakao.png" alt="카카오 로그인 버튼" />
             </a>
+            <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+          <script>
+          // 카카오 script 키
+            Kakao.init("416439531d0e4d8f33eb240c9b791ffb");
+          </script>
             <script>
+            //카카오 로그인 및 데이터 전송
             function kakaoLogin() {
             	  window.Kakao.Auth.login({
             	    scope: 'account_email, name, birthyear, phone_number, birthday',
@@ -198,6 +199,7 @@
       
    
 	<script>
+	// 로그인
 		$("#login2").click(() => {
 			$.ajax({
 				type : "post",
@@ -218,7 +220,9 @@
 		});
 	</script>
   </body>
-  <script>	
+  <script>
+  
+  // 첫 화면 캐러셀 기능
     const header = document.getElementById("header");
     const navLinks = document.querySelectorAll(".nav-link");
 
@@ -293,7 +297,7 @@
 
       handleScroll();
     });
-
+	// 첫화면 모달
     const modal = document.querySelector(".modal");
     const btnOpenModal = document.querySelector("#login");
 

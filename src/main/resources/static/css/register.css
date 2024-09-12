@@ -19,7 +19,7 @@
   flex-direction: column;
 }
 .registersection h1 {
-	margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 .registersection h1 i {
   color: rgb(49, 195, 253);
@@ -114,7 +114,6 @@
 .form div.user_birth i {
   margin-right: 19.5px;
 }
-
 
 .submit_btn {
   border: none;

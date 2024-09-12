@@ -93,7 +93,7 @@ public class PageController {
 
 		return "kakaomap2";
 	}
-	
+	// 특정 그룹의 메인 페이지 열람 및 전체 일정 데이터 가져오기
 	@GetMapping("/{groupName}")
 	public String select(@PathVariable("groupName") String groupName, BigSchedule bigSchedule, HttpServletRequest request, Model model) {
 		
@@ -114,7 +114,7 @@ public class PageController {
 		}
 		return null;
 	}
-	
+	// 세부 일정 이동 + 날짜별 세부 일정, 지불 품목 데이터 가져오기
 	@GetMapping("/{groupName}/detail")
 	public String detail(@PathVariable String groupName, @RequestParam int bsCode, HttpServletRequest request, Model model) {
 	
@@ -174,7 +174,7 @@ public class PageController {
         response.put("groupName", groupName);
         return response;
     }
-	
+	// 각 전체 일정의 모든 사진 불러오기
 	@ResponseBody
 	@PostMapping("/selectMyImg")
 	public List<Photo> photoList(HttpServletRequest request, int bsCode) {
@@ -185,7 +185,7 @@ public class PageController {
 		return photoList;
 	}
 	
-	
+	// 선택한 사진만 삭제
 	@ResponseBody
 	@PostMapping("/deletePhoto")
 	public void deletePhoto(String photoUrl, int photoCode) {
@@ -194,7 +194,6 @@ public class PageController {
 			File file = new File (url);
 			file.delete();
 		}
-		
 		service.deleteImg(photoCode);
 		
 	}

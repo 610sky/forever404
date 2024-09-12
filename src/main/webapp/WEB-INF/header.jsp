@@ -40,13 +40,6 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
 
       <div class="group" id="group1"></div>
 
-      <!-- 
-           <div class="group-container">
-      <div class="grouptest" id="grouptest"></div>
-      <i class="fa-regular fa-user"></i>
-       
-    </div>-->
-
       <div class="user" id="header2">
         <i class="fa-solid fa-user" id="myUser"></i>
       </div>
@@ -108,7 +101,40 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
         </section>
       </div>
     </div>
+
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+
     <script>
+      // 그룹 생성
+      $(".add2").click(() => {
+        const title = $("#textbox").val().trim();
+        const miniTitle = title.substring(0, 2);
+        $.ajax({
+          type: "post",
+          url: "/addGroup",
+          data: { groupName: title },
+          success: function (response) {
+            if (response) {
+              $(".group").append(
+                "<button type='button' data-code='" +
+                  title +
+                  "' class='groupButton' id='" +
+                  miniTitle +
+                  "'>" +
+                  miniTitle +
+                  "</button><span>" +
+                  title +
+                  "</span>"
+              );
+              window.location.reload();
+            } else {
+              $("#successText").text("사용할 수 없는 그룹명입니다.");
+            }
+          },
+        });
+      });
+
+      // 그룹 참가
       $("#attend").click(() => {
         const title = $("#inputatt").val();
         $.ajax({
@@ -129,8 +155,11 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
         });
       });
     </script>
+
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+
     <script>
+      // 로그아웃 후, 남은 세션 및 로컬 스트로지 정리
       $("#logout").click(function () {
         $.ajax({
           type: "post",
@@ -143,8 +172,9 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
           },
         });
       });
-      /* $(document).ready(function () {*/
+      ///카카오 로그아웃
       Kakao.init("416439531d0e4d8f33eb240c9b791ffb");
+
       $("#logout2").click(function () {
         $.ajax({
           type: "post",
@@ -160,6 +190,8 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
       });
     </script>
     <script>
+      // 페이지 시작 시 특정 유저가 가진 그룹을 가져오는 로직
+
       $(document).ready(function () {
         $.ajax({
           type: "post",
@@ -181,6 +213,8 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
                   "</span>"
               );
             });
+            // 그룹 별 페이지 구분을 위한 그룹네임 데이터를 로컬 스트로지에 담음
+
             const button = document.querySelectorAll(".groupButton");
             button.forEach((e) => {
               e.addEventListener("click", () => {
@@ -195,10 +229,8 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
       });
     </script>
 
-
-
-
     <script>
+      // 로그아웃 기능을 위한 아이디 구현
       $(".user").click(function () {
         $.ajax({
           type: "post",
@@ -210,6 +242,5 @@ uri="http://java.sun.com/jsp/jstl/functions"%>
         });
       });
     </script>
-    
   </body>
 </html>
