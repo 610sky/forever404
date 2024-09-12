@@ -338,7 +338,7 @@
     	  }
       });
       
-      //
+      // detail페이지에 그룹명 가져오기
       $(document).ready(function () {
         let groupName = localStorage.getItem("groupName");
         $.ajax({
@@ -357,7 +357,7 @@
         });
       });
       
-      //
+      /*
       function dateLoad(date){
     	  var cur_date = date;
     	  $.ajax({
@@ -374,7 +374,7 @@
                 console.error("Error:", error);
               },
             });
-      }
+      }*/
     </script>
 
 	<script src="${pageContext.request.contextPath}/js/detail2.js">
