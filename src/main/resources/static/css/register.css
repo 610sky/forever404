@@ -61,7 +61,9 @@
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
 }
-
+#birth{
+	color:black;
+}
 .form div input {
   width: 400px;
   margin-top: 30px;

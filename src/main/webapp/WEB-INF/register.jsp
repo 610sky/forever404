@@ -111,10 +111,11 @@ pageEncoding="UTF-8"%>
             <label for="birth">
               <i class="fa-solid fa-calendar-days"></i>
               <input
-                type="date"
+                type="text"
                 name="birth"
                 id="birth"
-                placeholder="회원 생년월일 (선택사항)"
+               	placeholder="회원 생년월일 (선택사항)"
+               	onfocus="this.type='date'"
                 class="user_birth"
                 max="9999-12-31"
             /></label>
