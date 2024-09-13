@@ -56,11 +56,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	 eventContent: {
 		html: `<div><i class="fa-solid fa-pencil"></i></div>` -> 나중에 생일할때 이용하면 좋을것같음
 	 },*/,
-    eventClick: function (info) {
-    },
-    eventClick: function showModal() {
-      $("#bigModal").css("display", "block");
-    },
+
     eventClick: function (info) {
       const modal = $("#bigModal");
       const btn = $("#six");
@@ -94,21 +90,11 @@ document.addEventListener("DOMContentLoaded", function () {
       const events = calendar.getEvents(); // 모든 이벤트 가져오기
       const clickedDate = info.dateStr;
 
-      // 클릭한 날짜에 이벤트가 있는지 확인
-      const hasEvent = events.some((event) => {
-        const eventStart = event.start.toISOString().split("T")[0];
-        const eventEnd = new Date(event.end);
-        eventEnd.setDate(eventEnd.getDate()); // 하루 빼기
-        const eventEndDate = eventEnd.toISOString().split("T")[0];
-
-        return clickedDate >= eventStart + 1 && clickedDate <= eventEndDate;
-      });
-
       // 클릭한 날짜에 해당하는 이벤트 찾기
       const eventOnClickedDate = events.find((event) => {
         const eventStart = event.start.toISOString().split("T")[0];
         const eventEnd = new Date(event.end);
-        eventEnd.setDate(eventEnd.getDate()); // 하루 빼기
+        eventEnd.setDate(eventEnd.getDate());
         const eventEndDate = eventEnd.toISOString().split("T")[0];
 
         // 클릭한 날짜가 이벤트 기간 내에 있는지 확인
@@ -129,7 +115,7 @@ document.addEventListener("DOMContentLoaded", function () {
         sessionStorage.setItem("bsCode", linkbs);
 
         const endDate = new Date(eventOnClickedDate.end);
-        endDate.setDate(endDate.getDate() - 1);
+        endDate.setDate(endDate.getDate() - 1); // 하루 빼기
         $("#addMemop2").text(`${endDate.toLocaleDateString()}`);
         $("#addMemop3").text(eventOnClickedDate.extendedProps.money);
 
